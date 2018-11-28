@@ -17,7 +17,7 @@
       <xsl:value-of select="c:ourlogo"/>
       <br/>
       <xsl:value-of select="c:telephone"/>
-      <xsl:value-of select="c:telephones/c:telephone"/>
+      <xsl:value-of select="c:telephones/">
       
       <br/>
 
