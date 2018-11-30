@@ -21,27 +21,35 @@ namespace _4thHandin
         protected void Page_Load(object sender, EventArgs e)
         {
             client = new WebClient();
-            
+            LabelMessages.Visible = false;
 
         }
 
         protected void ButtonSearchName_Click(object sender, EventArgs e)
 
         {
-            SqlConnection con1 = new SqlConnection(@"data source = MIHNEA-LAPTOP; integrated security = true; database = MovieDBList;");
+            LabelMessages.Text = TextBoxInput.Text + " not found in database";
+
+            SqlConnection con1 = ConMan.ConnecStr;
             DataTable dt = new DataTable();
             con1.Open();
             SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("select * from MovieList where Title  = '" + TextBoxInput.Text + "'", con1);
+            SqlCommand myCommand = new SqlCommand("select * from MovieDB where Title  = '" + TextBoxInput.Text + "'", con1);
 
             myReader = myCommand.ExecuteReader();
+            LabelMessages.Visible = true;
 
             while (myReader.Read())
             {
-                LabelMessages.Text = (myReader["Title"].ToString());
                 
+                LabelMessages.Text = (myReader["Title"].ToString());
+
+
                 //and whatever you have to retrieve
             }
+
+
+
             con1.Close();
 
 

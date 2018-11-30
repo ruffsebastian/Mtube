@@ -23,7 +23,7 @@
                 <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>" SelectCommand="SELECT * FROM [MovieList]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringStan %>" SelectCommand="SELECT * FROM [MovieDB]"></asp:SqlDataSource>
     </form>
 </body>
 </html>

@@ -181,6 +181,7 @@
     <Compile Include="commercials.aspx.designer.cs">
       <DependentUpon>commercials.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ConMan.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
