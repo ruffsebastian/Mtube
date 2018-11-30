@@ -13,17 +13,38 @@
             <br />
             <br />
             <asp:Button ID="ButtonSearchName" runat="server" OnClick="ButtonSearchName_Click" Text="Search Name" />
+            <br />     
+            <asp:Label ID="LabelMessages" runat="server" Text="Result"></asp:Label>
             <br />
+            <asp:Label ID="LabelResultTitle" runat="server" Text="Result"></asp:Label>
+            <br />
+            <asp:Label ID="LabelResultRating" runat="server" Text="Result"></asp:Label>
+            <br />
+            <asp:Label ID="LabelResultYear" runat="server" Text="Result"></asp:Label>
+            <br />
+            <asp:Label ID="LabelResultActors" runat="server" Text="Result"></asp:Label>
+            <br />
+            <asp:Label ID="LabelResultDescription" runat="server" Text="Result"></asp:Label>
+            <br />
+            <asp:Label ID="LabelResultChildRating" runat="server" Text="Result"></asp:Label>
+            <br />
+            <br />
+            <br />
+            <asp:Image ID="ImagePoster" runat="server" Height="356px" ImageUrl="~/MyFiles/default-img.png" />
         </div>
-        <asp:Label ID="LabelMessages" runat="server" Text="Result"></asp:Label>
-        <asp:GridView ID="GridViewMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridViewMovies_SelectedIndexChanged">
+
+
+
+        <asp:GridView ID="GridViewMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridViewMovies_SelectedIndexChanged" DataKeyNames="ID">
             <Columns>
+                <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                 <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
                 <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
+                <asp:BoundField DataField="ViewCount" HeaderText="ViewCount" SortExpression="ViewCount" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringStan %>" SelectCommand="SELECT * FROM [MovieDB]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString4 %>" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
     </form>
 </body>
 </html>

@@ -17,109 +17,83 @@ namespace _4thHandin
 {
     public partial class Search : System.Web.UI.Page
     {
-        WebClient client;
         protected void Page_Load(object sender, EventArgs e)
         {
-            client = new WebClient();
+
+            LabelResultTitle.Visible = false;
+            LabelResultRating.Visible = false;
+            LabelResultYear.Visible = false;
+            LabelResultActors.Visible = false;
+            LabelResultDescription.Visible = false;
+            LabelResultChildRating.Visible = false;
             LabelMessages.Visible = false;
-
         }
-
         protected void ButtonSearchName_Click(object sender, EventArgs e)
 
         {
-            LabelMessages.Text = TextBoxInput.Text + " not found in database";
 
-            SqlConnection con1 = ConMan.ConnecStr;
-            DataTable dt = new DataTable();
-            con1.Open();
-            SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("select * from MovieDB where Title  = '" + TextBoxInput.Text + "'", con1);
+            string result = OmdbAPI.NameAPI(TextBoxInput.Text);
 
-            myReader = myCommand.ExecuteReader();
-            LabelMessages.Visible = true;
+            File.WriteAllText(Server.MapPath("~/MyFiles/Latestresult.xml"), result);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
 
-            while (myReader.Read())
+            if (doc.SelectSingleNode("/root/@response").InnerText == "True")
             {
-                
-                LabelMessages.Text = (myReader["Title"].ToString());
+                XmlNodeList nodelist = doc.SelectNodes("/root/movie");
+                foreach (XmlNode node in nodelist)
+                {
+                    string poster = node.SelectSingleNode("@poster").InnerText;
+                    ImagePoster.ImageUrl = poster;
+                }
+
+                LabelResultTitle.Text = "Title: " + nodelist[0].SelectSingleNode("@title").InnerText;
+                LabelResultRating.Text = "Rating: " + nodelist[0].SelectSingleNode("@imdbRating").InnerText;
+                LabelResultYear.Text = "Year: " + nodelist[0].SelectSingleNode("@year").InnerText;
+                LabelResultActors.Text = "Actors: " + nodelist[0].SelectSingleNode("@actors").InnerText;
+                LabelResultDescription.Text = "Description: " + nodelist[0].SelectSingleNode("@plot").InnerText;
+                LabelResultChildRating.Text = "Child Rating: " + nodelist[0].SelectSingleNode("@rated").InnerText;
+
+                LabelResultTitle.Visible = true;
+                LabelResultRating.Visible = true;
+                LabelResultYear.Visible = true;
+                LabelResultActors.Visible = true;
+                LabelResultDescription.Visible = true;
+                LabelResultChildRating.Visible = true;
+
+            }
+            else
+            {
+                LabelMessages.Text = "Movie not found";
+                LabelMessages.Visible = true;
+                ImagePoster.ImageUrl = "~/Myfiles/default-img.png";
+                LabelResultTitle.Text = "Result";
 
 
-                //and whatever you have to retrieve
             }
 
 
 
+
+
+            SqlConnection con1 = new SqlConnection(@"data source = DESKTOP-SCRFL8B; integrated security = true; database = MovieDBList;");
+            DataTable dt = new DataTable();
+            con1.Open();
+            SqlDataReader myReader = null;
+            // we need to add the second part of sql command on pageload of single page!!!
+            SqlCommand myCommand = new SqlCommand("select * from MovieDBList where Title = '"+TextBoxInput.Text+"' update MovieDBList set ViewCount = ViewCount + 1 where Title = '"+TextBoxInput.Text+"'", con1);
+
+            myReader = myCommand.ExecuteReader();
+            
+
+            while (myReader.Read())
+            {
+                LabelMessages.Text = (myReader["Title"].ToString());
+                LabelMessages.Visible = true;
+                //and whatever you have to retrieve
+            }
             con1.Close();
 
-
-
-
-            /* if (TextBoxInput.Text == "")
-                 TextBoxInput.Text = "IT";
-             string reply = client.DownloadString("http://localhost:" + TextBoxPort.Text + "/api/values/" + TextBoxInput.Text);
-             LabelMessages.Text = reply;
-             string result = "";
-
-
-
-             if (RadioButtonName.Checked)
-             {
-                 //substitute space "n" with "+"
-                 string myselection = TextBoxInput.Text.Replace(' ', '+');
-                 if (RadioButtonJSON.Checked)
-                 {
-                     result = client.DownloadString("http://www.omdbapi.com/?t=" + myselection + "&apikey=" + TokenClass.token);
-                 }
-
-             }
-
-
-             if (RadioButtonJSON.Checked)
-             {
-                 File.WriteAllText(Server.MapPath("~/MyFiles/Latestresult.json"), result);
-
-                 //A simple example. Treat Json as a string
-                 string[] separatingChars = { "\":\"", "\",\"", "\":[{\"", "\"},{\"", "\"}]\"", "{\"", "\"}" };
-                 string[] mysplit = result.Split(separatingChars, System.StringSplitOptions.RemoveEmptyEntries);
-
-                 if (mysplit[1] != "False")
-                 {
-                     LabelMessages.Text = "Movie found :)";
-                     for (int i = 0; i < mysplit.Length; i++)
-                     {
-                         if (mysplit[i] == "Poster")
-                         {
-                             ImagePoster.ImageUrl = mysplit[++i];
-                             break;
-                         }
-                     }
-                     LabelResults.Text = "Ratings : ";
-                     for (int i = 0; i < mysplit.Length; i++)
-                     {
-                         if (mysplit[i] == "Ratings")
-                         {
-                             while (mysplit[++i] == "Source")
-                             {
-                                 if (mysplit[i - 1] != "Ratings")
-                                 {
-                                     LabelResults.Text += ";  ";
-                                 }
-                                 LabelResults.Text += mysplit[i + 3] + " from " + mysplit[i + 1];
-                                 i = i + 3;
-                             }
-                             break;
-                         }
-
-                     }
-
-                 }
-                 else
-                 {
-                     LabelMessages.Text = "Movie not found";
-                     ImagePoster.ImageUrl = "~/MyFiles/goat.png";
-                     LabelResults.Text = "Result";
-                 }*/
         }
 
         protected void GridViewMovies_SelectedIndexChanged(object sender, EventArgs e)
