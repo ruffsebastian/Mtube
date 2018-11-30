@@ -126,7 +126,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="MoviesByCategory.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="xml\commercials.xml" />
     <Content Include="xml\commercialsXSLT.xslt" />
@@ -204,15 +203,9 @@
     <Compile Include="DisplayTopMovies.aspx.designer.cs">
       <DependentUpon>DisplayTopMovies.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GetPosterAPI.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="MoviesByCategory.aspx.cs">
-      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MoviesByCategory.aspx.designer.cs">
-      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="OmdbAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

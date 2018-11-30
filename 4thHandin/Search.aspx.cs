@@ -12,6 +12,7 @@ using System.Collections.Specialized;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace _4thHandin
 {
@@ -19,7 +20,19 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int countPoster = 0;
+            foreach(GridViewRow row in GridViewMovies.Rows)
+            {
+              //  countPoster++;
+               // ImagePoster.ImageUrl = GetPosterAPI.GetUrl(row.Cells[1].Text);
 
+                //Thread.Sleep(5000);
+                if(countPoster==10)
+                {
+                    break;
+                }
+            }
+          //  ImagePoster.ImageUrl = GetPosterAPI.GetUrl("frozen");
             LabelResultTitle.Visible = false;
             LabelResultRating.Visible = false;
             LabelResultYear.Visible = false;
@@ -84,7 +97,7 @@ namespace _4thHandin
             SqlCommand myCommand = new SqlCommand("select * from MovieDBList where Title = '"+TextBoxInput.Text+"' update MovieDBList set ViewCount = ViewCount + 1 where Title = '"+TextBoxInput.Text+"'", con1);
 
             myReader = myCommand.ExecuteReader();
-            
+           //-----------------------------------------------------------------------------------------------// 
 
             while (myReader.Read())
             {
@@ -94,8 +107,17 @@ namespace _4thHandin
             }
             con1.Close();
 
+            con1.Open();
+            SqlDataReader myReader1 = null;
+            // we need to add the second part of sql command on pageload of single page!!!
+            SqlCommand myCommand1 = new SqlCommand("update MovieDBList set PosterPath ='" + ImagePoster.ImageUrl + "' where Title = '" + TextBoxInput.Text+ "'", con1);
+
+            myReader1 = myCommand1.ExecuteReader();
+            con1.Close();
+
+
         }
 
-       
+
     }
     }
