@@ -20,6 +20,8 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SqlDataSource1.ConnectionString = ConMan.ConnecStr;
+
             int countPoster = 0;
             foreach(GridViewRow row in GridViewMovies.Rows)
             {
@@ -89,7 +91,7 @@ namespace _4thHandin
 
 
 
-            SqlConnection con1 = ConMan.ConnecStr;
+            SqlConnection con1 = new SqlConnection(ConMan.ConnecStr);
             DataTable dt = new DataTable();
             con1.Open();
             SqlDataReader myReader = null;

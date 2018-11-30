@@ -1,14 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DisplayTopMovies.aspx.cs" Inherits="_4thHandin.DisplayTopMovies" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DisplayTopMovies.aspx.cs" Inherits="_4thHandin.DisplayTopMovies" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
+    <div class="row">
+        <div class="col-md-12">
+           
 
             <asp:GridView ID="GridViewDisplayTopMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1">
                 <Columns>
@@ -17,11 +13,14 @@
                     <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
                     <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
                     <asp:BoundField DataField="ViewCount" HeaderText="ViewCount" SortExpression="ViewCount" />
+                    <asp:ImageField DataImageUrlField="PosterPath" HeaderText="PosterPath">
+                    </asp:ImageField>
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringSebastian %>" SelectCommand="SELECT TOP (10) ID, Title, Genre, Year, ViewCount FROM MovieDBList ORDER BY ViewCount DESC, Year DESC"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT TOP (10) * FROM MovieDBList ORDER BY ViewCount DESC, Year DESC"></asp:SqlDataSource>
 
+        
         </div>
-    </form>
-</body>
-</html>
+    </div>
+
+</asp:Content>

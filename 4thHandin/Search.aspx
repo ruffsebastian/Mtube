@@ -1,14 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="_4thHandin.Search" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="_4thHandin.Search" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
+    <div class="row">
+        <div class="col-md-12">
+           <div>
             <asp:TextBox ID="TextBoxInput" runat="server" Width="250px"></asp:TextBox>
             <br />
             <br />
@@ -32,9 +28,7 @@
             <br />
             <asp:Image ID="ImagePoster" runat="server" Height="356px" ImageUrl="~/MyFiles/default-img.png" />
         </div>
-
-
-
+                       
         <asp:GridView ID="GridViewMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="ID">
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
@@ -48,7 +42,8 @@
 
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringSebastian %>" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
-    </form>
-</body>
-</html>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
+        </div>
+    </div>
+
+</asp:Content>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,13 @@ namespace _4thHandin
 {
     public class ConMan
     {
-        //public static SqlConnection ConnecStr = new SqlConnection(@"data source = ANDREAS2018-PC\SQLEXPRESS; integrated security = true; database = Exterminatus;");
-        //public static SqlConnection ConnecStr = new SqlConnection(@"data source = LISBET; integrated security = true; database = MovieDBList;");
-        //public static SqlConnection ConnecStr = new SqlConnection(@"data source = MIHNEA-LAPTOP; integrated security = true; database = MovieDBList;");
-        //public static SqlConnection ConnecStr = new SqlConnection(@"data source = THE-STAN; integrated security = true; database = MovieDBList;");
-        public static SqlConnection ConnecStr = new SqlConnection(@"data source = DESKTOP-SCRFL8B; integrated security = true; database = MovieDBList;");
+        //centralized database access point - add or uncomment your own connection and comment out the previous - dont just change the current one to your own
+        //to create a new connection simply create it in the webconfig(manually or by setting up a sqldatasource for it and then deleting it) and put its name here 
 
-        //add your own connection for easy access and comment out any others
+        public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreasHome"].ToString();
+        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreas"].ToString();
+        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringMihnea"].ToString();
+        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringStan"].ToString();
+        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringSebastian"].ToString();
     }
 }
