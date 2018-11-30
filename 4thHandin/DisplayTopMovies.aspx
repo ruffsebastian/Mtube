@@ -19,7 +19,7 @@
                     <asp:BoundField DataField="ViewCount" HeaderText="ViewCount" SortExpression="ViewCount" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString2 %>" SelectCommand="SELECT TOP (10) ID, Title, Genre, Year, ViewCount FROM MovieDB ORDER BY ViewCount DESC, Year DESC"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringAndreas %>" SelectCommand="SELECT TOP (10) ID, Title, Genre, Year, ViewCount FROM MovieDBList ORDER BY ViewCount DESC, Year DESC"></asp:SqlDataSource>
 
         </div>
     </form>

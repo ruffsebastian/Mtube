@@ -76,7 +76,7 @@ namespace _4thHandin
 
 
 
-            SqlConnection con1 = new SqlConnection(@"data source = DESKTOP-SCRFL8B; integrated security = true; database = MovieDBList;");
+            SqlConnection con1 = ConMan.ConnecStr;
             DataTable dt = new DataTable();
             con1.Open();
             SqlDataReader myReader = null;
@@ -93,11 +93,6 @@ namespace _4thHandin
                 //and whatever you have to retrieve
             }
             con1.Close();
-
-        }
-
-        protected void GridViewMovies_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 

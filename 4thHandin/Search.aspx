@@ -35,7 +35,7 @@
 
 
 
-        <asp:GridView ID="GridViewMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridViewMovies_SelectedIndexChanged" DataKeyNames="ID">
+        <asp:GridView ID="GridViewMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="ID">
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
@@ -44,7 +44,7 @@
                 <asp:BoundField DataField="ViewCount" HeaderText="ViewCount" SortExpression="ViewCount" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString4 %>" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringAndreas %>" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
     </form>
 </body>
 </html>
