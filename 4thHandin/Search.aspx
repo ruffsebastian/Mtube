@@ -42,9 +42,13 @@
                 <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
                 <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
                 <asp:BoundField DataField="ViewCount" HeaderText="ViewCount" SortExpression="ViewCount" />
+
+                <asp:ImageField DataImageUrlField="PosterPath">
+                </asp:ImageField>
+
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringAndreas %>" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringSebastian %>" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
     </form>
 </body>
 </html>

@@ -17,6 +17,9 @@ namespace _4thHandin
             return result;
         }
 
-
+        internal static string NameAPI(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
