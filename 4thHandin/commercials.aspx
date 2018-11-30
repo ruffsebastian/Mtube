@@ -1,18 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="commercials.aspx.cs" Inherits="_4thHandin.commercials" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="commercials.aspx.cs" Inherits="_4thHandin.commercials" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-
-            <asp:Xml ID="XmlCommercials" runat="server" DocumentSource="~/xml/commercials.xml" TransformSource="~/xml/commercialsXSLT.xslt"></asp:Xml>
-
+    <div class="row">
+        <div class="col-md-12">
+           <asp:Xml ID="XmlCommercials" runat="server" DocumentSource="~/xml/commercials.xml" TransformSource="~/xml/commercialsXSLT.xslt"></asp:Xml>
         </div>
-    </form>
-</body>
-</html>
+    </div>
+
+</asp:Content>

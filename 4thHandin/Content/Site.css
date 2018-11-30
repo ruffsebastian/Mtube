@@ -2,6 +2,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:black;
 }
 
 /* Wrapping element */
@@ -23,6 +24,8 @@ textarea {
 @media screen and (min-width: 768px) {
     .jumbotron {
         margin-top: 20px;
+        background-color:darkslategray;
+        color:white;
     }
 
     .body-content {
