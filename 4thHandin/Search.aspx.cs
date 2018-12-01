@@ -17,31 +17,37 @@ using System.Threading;
 namespace _4thHandin
 {
     public partial class Search : System.Web.UI.Page
-    {
+    { 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SqlConnection con1 = new SqlConnection(ConMan.ConnecStr);
             SqlDataSource1.ConnectionString = ConMan.ConnecStr;
 
-            int countPoster = 0;
-            foreach(GridViewRow row in GridViewMovies.Rows)
-            {
-              //  countPoster++;
-               // ImagePoster.ImageUrl = GetPosterAPI.GetUrl(row.Cells[1].Text);
+            
+             int countPoster = 0;
+            con1.Open();
+            foreach (GridViewRow row in GridViewMovies.Rows)
+             {                
+                SqlCommand myCommand1 = new SqlCommand("update MovieDBList set PosterPath ='" + GetPosterAPI.GetUrl(row.Cells[1].Text) + "' where Title = '" + row.Cells[1].Text + "'", con1);
+                myCommand1.ExecuteNonQuery();
 
                 //Thread.Sleep(5000);
-                if(countPoster==10)
-                {
-                    break;
-                }
+
+                LabelMessages.Visible = true;
+                LabelMessages.Text = "last (grid)row affected:" + countPoster.ToString();
+
+                ImagePoster.ImageUrl = GetPosterAPI.GetUrl(row.Cells[1].Text);
+                
             }
-          //  ImagePoster.ImageUrl = GetPosterAPI.GetUrl("frozen");
+            con1.Close();
+
             LabelResultTitle.Visible = false;
             LabelResultRating.Visible = false;
             LabelResultYear.Visible = false;
             LabelResultActors.Visible = false;
             LabelResultDescription.Visible = false;
             LabelResultChildRating.Visible = false;
-            LabelMessages.Visible = false;
+            //LabelMessages.Visible = false;
         }
         protected void ButtonSearchName_Click(object sender, EventArgs e)
 
@@ -83,14 +89,8 @@ namespace _4thHandin
                 LabelMessages.Visible = true;
                 ImagePoster.ImageUrl = "~/Myfiles/default-img.png";
                 LabelResultTitle.Text = "Result";
-
-
             }
-
-
-
-
-
+                                          
             SqlConnection con1 = new SqlConnection(ConMan.ConnecStr);
             DataTable dt = new DataTable();
             con1.Open();

@@ -105,9 +105,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="commercials.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -126,6 +124,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="MoviesByCategory.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="xml\commercials.xml" />
     <Content Include="xml\commercialsXSLT.xslt" />
@@ -166,13 +165,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="commercials.aspx.cs">
       <DependentUpon>commercials.aspx</DependentUpon>
@@ -182,13 +174,6 @@
       <DependentUpon>commercials.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConMan.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -206,6 +191,13 @@
     <Compile Include="GetPosterAPI.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesByCategory.aspx.cs">
+      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoviesByCategory.aspx.designer.cs">
+      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="OmdbAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,7 +29,7 @@
             <asp:Image ID="ImagePoster" runat="server" Height="356px" ImageUrl="~/MyFiles/default-img.png" />
         </div>
                        
-        <asp:GridView ID="GridViewMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="ID">
+        <asp:GridView ID="GridViewMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="ID" PageSize="50">
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
@@ -42,7 +42,7 @@
 
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] ORDER BY [Year]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([PosterPath] IS NULL)" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringAndreasHome %>"></asp:SqlDataSource>
         </div>
     </div>
 

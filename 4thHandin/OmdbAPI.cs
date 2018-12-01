@@ -8,12 +8,12 @@ namespace _4thHandin
 {
     public class OmdbAPI
     {
-
+        private static WebClient client = new WebClient();
 
         public static string NameAPI(string name)
         {
-            WebClient client = new WebClient();
-            string result = client.DownloadString("http://www.omdbapi.com/?t=" + name + "&r=xml&apikey=" + TokenClass.token);
+            
+            string result = client.DownloadString("http://www.omdbapi.com/?apikey="+ TokenClass.token + "&r=xml&t=" + name);
             return result;
         }
 
