@@ -54,6 +54,7 @@
                         <li><a runat="server" href="~/commercials">Commercials</a></li>
                         <li><a runat="server" href="~/DisplayTopMovies">Top 10 Movies</a></li>
                         <li><a runat="server" href="~/Search">Search</a></li>
+                        <li><a runat="server" href="~/GetImages">GetImages</a></li>
                     </ul>
                 </div>
             </div>
@@ -62,8 +63,10 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            <footer >
+                <center alt="Made by group 42 & 69 - collectively represented by their combined value of 104 expressed in roman numerals - CIV">
+                <p style="font-size:2em">CIV</p>
+                </center>
             </footer>
         </div>
 

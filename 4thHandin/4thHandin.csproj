@@ -126,6 +126,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="MoviesByCategory.aspx" />
     <Content Include="Search.aspx" />
+    <Content Include="GetImages.aspx" />
     <Content Include="xml\commercials.xml" />
     <Content Include="xml\commercialsXSLT.xslt" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -229,6 +230,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GetImages.aspx.cs">
+      <DependentUpon>GetImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetImages.aspx.designer.cs">
+      <DependentUpon>GetImages.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
