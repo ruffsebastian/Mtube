@@ -12,10 +12,14 @@ namespace _4thHandin
         //centralized database access point - add or uncomment your own connection and comment out the previous - dont just change the current one to your own
         //to create a new connection simply create it in the webconfig(manually or by setting up a sqldatasource for it and then deleting it) and put its name here 
 
-        public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreasHome"].ToString();
-        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreas"].ToString();
-        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringMihnea"].ToString();
-        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringStan"].ToString();
-        //public static string ConnecStr = new SqlConnection(ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringSebastian"].ToString();
+        //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreasHome"].ToString();
+        public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreas"].ToString();
+        //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringMihnea"].ToString();
+        //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringStan"].ToString();
+        //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringSebastian"].ToString();
+        //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringRazvanHome"].ToString();
+
+        
+      
     }
 }

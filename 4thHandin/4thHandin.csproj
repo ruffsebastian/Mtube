@@ -127,6 +127,7 @@
     <Content Include="MoviesByCategory.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="GetImages.aspx" />
+    <Content Include="SingleView.aspx" />
     <Content Include="xml\commercials.xml" />
     <Content Include="xml\commercialsXSLT.xslt" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -208,6 +209,13 @@
     </Compile>
     <Compile Include="Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SingleView.aspx.cs">
+      <DependentUpon>SingleView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SingleView.aspx.designer.cs">
+      <DependentUpon>SingleView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

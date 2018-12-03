@@ -67,6 +67,9 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer >
+                <center>
+            <h2><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h2>
+            </center>
                 <center alt="Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CIV">
                 <p style="font-size:2em">CXI</p>
                 </center>

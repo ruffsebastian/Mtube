@@ -12,6 +12,7 @@
                     <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
                     <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
                     <asp:BoundField DataField="Viewcount" HeaderText="Viewcount" SortExpression="Viewcount" />
+                    <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="SingleView.aspx?query={0}" DataTextField="Title" DataTextFormatString="{0}" HeaderText="Link" />
                 </Columns>
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Title] = @Title)">
@@ -21,31 +22,6 @@
                 </asp:SqlDataSource>
 
             </div>
-
-           <div>
-            <asp:TextBox ID="TextBoxInput" runat="server" Width="250px"></asp:TextBox>
-            <br />
-            <br />
-            <asp:Button ID="ButtonSearchName" runat="server" OnClick="ButtonSearchName_Click" Text="Search Name" />
-            <br />     
-            <asp:Label ID="LabelMessages" runat="server" Text="Result"></asp:Label>
-            <br />
-            <asp:Label ID="LabelResultTitle" runat="server" Text="Result"></asp:Label>
-            <br />
-            <asp:Label ID="LabelResultRating" runat="server" Text="Result"></asp:Label>
-            <br />
-            <asp:Label ID="LabelResultYear" runat="server" Text="Result"></asp:Label>
-            <br />
-            <asp:Label ID="LabelResultActors" runat="server" Text="Result"></asp:Label>
-            <br />
-            <asp:Label ID="LabelResultDescription" runat="server" Text="Result"></asp:Label>
-            <br />
-            <asp:Label ID="LabelResultChildRating" runat="server" Text="Result"></asp:Label>
-            <br />
-            <br />
-            <br />
-            <asp:Image ID="ImagePoster" runat="server" Height="356px" ImageUrl="~/MyFiles/default-img.png" />
-        </div>
       </div>           
     </div>
 

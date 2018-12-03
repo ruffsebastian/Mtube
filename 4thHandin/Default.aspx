@@ -10,9 +10,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <center>
-            <h2><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h2>
-            </center>
+            
         </div>
     </div>
 
