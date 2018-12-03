@@ -20,7 +20,8 @@ namespace _4thHandin
     { 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SqlDataSource1.ConnectionString = ConMan.ConnecStr;
+            
             LabelResultTitle.Visible = false;
             LabelResultRating.Visible = false;
             LabelResultYear.Visible = false;
