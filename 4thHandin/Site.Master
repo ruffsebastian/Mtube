@@ -68,10 +68,11 @@
             <hr />
             <footer >
                 <center>
-            <h2><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h2>
+                    <h2><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h2>
             </center>
-                <center alt="Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CIV">
+                <center alt="Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CXI - ( ty for correction seb )">
                 <p style="font-size:2em">CXI</p>
+                    <h3>DEVINFO: <asp:Label ID="Labelcurrentconman" runat="server" Text="Label"></asp:Label></h3>
                 </center>
             </footer>
         </div>

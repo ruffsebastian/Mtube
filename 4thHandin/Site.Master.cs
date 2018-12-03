@@ -12,7 +12,9 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            WebClient client = new WebClient();
+            Labelcurrentconman.Text = ConMan.ConnecStr;  //tell the dev what connection he is using
+            
+             WebClient client = new WebClient();
 
             string[] Teachers = { "Torben", "Tue", "Morten", "Jesper" };
             string reply = client.DownloadString("http://api.icndb.com/jokes/random?firstName=" + Teachers[new Random().Next(0, Teachers.Length)]);
