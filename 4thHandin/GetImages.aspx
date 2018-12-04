@@ -16,6 +16,6 @@
         </asp:GridView>
          <asp:Image ID="ImagePoster" runat="server" Height="356px" ImageUrl="~/MyFiles/default-img.png" />
     <asp:Label ID="LabelMessages" runat="server" Text="Result"></asp:Label>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([PosterPath] IS NULL)" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringAndreasHome %>"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([PosterPath] IS NULL)"></asp:SqlDataSource>
         </div>
 </asp:Content>

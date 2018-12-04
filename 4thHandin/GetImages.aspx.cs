@@ -12,9 +12,9 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ConMan.ConnecStr;
+            SqlDataSource1.ConnectionString = ConMan.ConnStr;
             
-            SqlConnection con1 = new SqlConnection(ConMan.ConnecStr);
+            SqlConnection con1 = new SqlConnection(ConMan.ConnStr);
             
             int countPoster = 0;
             con1.Open();

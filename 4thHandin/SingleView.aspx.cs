@@ -24,27 +24,25 @@ namespace _4thHandin
             LabelMessages.Visible = false;
 
 
-            string query = Request.QueryString["query"].ToString();
-            if (query.Length>0)
+            string queryID = Request.QueryString["queryID"].ToString();
+            SqlConnection con = new SqlConnection(ConMan.ConnStr);
+            DataTable dt = new DataTable();
+            con.Open();
+            SqlDataReader myReader = null;
+            SqlCommand myCommand = new SqlCommand("select * from MovieDBList where id = " + Int32.Parse(queryID) 
+                + " update MovieDBList set ViewCount = ViewCount + 1 where ID = " + Int32.Parse(queryID), con);
+
+            myReader = myCommand.ExecuteReader();
+            //-----------------------------------------------------------------------------------------------// 
+
+            //get movie name from database and show in label
+            while (myReader.Read())
             {
-                SqlConnection con2 = new SqlConnection(ConMan.ConnecStr);
-                DataTable dt2 = new DataTable();
-                con2.Open();
-                SqlDataReader myReader2 = null;
-                SqlCommand myCommand2 = new SqlCommand("select * from MovieDBList where id = " + Int32.Parse(query) + " update MovieDBList set ViewCount = ViewCount + 1 where ID = " + Int32.Parse(query), con2);
-
-                myReader2 = myCommand2.ExecuteReader();
-                //-----------------------------------------------------------------------------------------------// 
-
-                //get movie name from database and show in label
-                while (myReader2.Read())
-                {
-                    LabelMessages.Text = (myReader2["Title"].ToString());
-                    LabelMessages.Visible = true;
-                    //and whatever you have to retrieve
-                }
-
+                LabelMessages.Text = (myReader["Title"].ToString());
+                LabelMessages.Visible = true;
+                //and whatever you have to retrieve
             }
+
             string result = OmdbAPI.NameAPI(LabelMessages.Text);
 
             File.WriteAllText(Server.MapPath("~/MyFiles/Latestresult.xml"), result);
@@ -80,7 +78,7 @@ namespace _4thHandin
                 LabelMessages.Text = "Movie not found";
                 LabelMessages.Visible = true;
                 ImagePoster.ImageUrl = "~/Myfiles/default-img.png";
-                LabelResultTitle.Text = "Result";
+                LabelResultTitle.Text = "no Results";
             }
         }
     }

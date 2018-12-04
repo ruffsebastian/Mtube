@@ -12,12 +12,12 @@
                     <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
                     <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
                     <asp:BoundField DataField="Viewcount" HeaderText="Viewcount" SortExpression="Viewcount" />
-                    <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="SingleView.aspx?query={0}" DataTextField="Title" DataTextFormatString="{0}" HeaderText="Link" />
+                    <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="SingleView.aspx?queryID={0}" DataTextField="Title" DataTextFormatString="{0}" HeaderText="Link" />
                 </Columns>
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Title] = @Title)">
                 <SelectParameters>
-                    <asp:QueryStringParameter DefaultValue="234567890" Name="Title" QueryStringField="query" Type="String" />
+                    <asp:QueryStringParameter DefaultValue="Fight Club" Name="Title" QueryStringField="queryName" Type="String" />
                 </SelectParameters>
                 </asp:SqlDataSource>
 
