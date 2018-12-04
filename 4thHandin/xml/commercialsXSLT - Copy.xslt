@@ -3,6 +3,8 @@
                               xmlns:c="http://my.company.com"
 >
   <xsl:output method="xml" indent="yes"/>
+  
+  
   <xsl:template match="/">
     <commercials>
     <xsl:for-each select="c:commercials/c:commercial">
@@ -15,6 +17,7 @@
         </xsl:attribute>
         <xsl:attribute name="logo">
           <xsl:value-of select="c:logo"/>
+        <xsl:value-of select="c:ourlogo"/>
         </xsl:attribute>
       </commercial>
     </xsl:for-each>

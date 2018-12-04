@@ -20,7 +20,12 @@ namespace _4thHandin
     { 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ConMan.ConnStr;     
+            SqlDataSource1.ConnectionString = ConMan.ConnStr;
+
+            if (GridViewDisplaySearch.Rows.Count == 1)
+            {
+                Response.Redirect("~/SingleView/?queryID=" + GridViewDisplaySearch.Rows[0].Cells[0].Text);
+            }
         }
     }
 }

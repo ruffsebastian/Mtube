@@ -17,12 +17,12 @@ namespace _4thHandin
 
             //UpdateGridView();
             Panel1.Visible = true;
-            Panel2.Visible = false;
+            Panel2.Visible = true;
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Panel1.Visible = false;
+            Panel1.Visible = true;
             Panel2.Visible = true;
         }
     }
