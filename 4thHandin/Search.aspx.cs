@@ -27,7 +27,6 @@ namespace _4thHandin
             {
                 countMovies++;
                 MovieID = row.Cells[0].Text;
-
             }
 
             if (countMovies == 1)

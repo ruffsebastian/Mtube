@@ -31,7 +31,7 @@ namespace _4thHandin
 
         protected void ButtonSearch_Click(object sender, EventArgs e)
         {
-            Response.Redirect("./search/?queryName=" + TextBoxSearch.Text);
+            Response.Redirect("~/search/?queryName=" + TextBoxSearch.Text);
         }
     }
 }
