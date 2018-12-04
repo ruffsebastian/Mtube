@@ -3,9 +3,7 @@
                               xmlns:c="http://my.company.com"
 >
   <xsl:output method="xml" indent="yes"/>
-  
-  
-  <xsl:template match="/">
+    <xsl:template match="/">
     <commercials>
     <xsl:for-each select="c:commercials/c:commercial">
       <commercial>

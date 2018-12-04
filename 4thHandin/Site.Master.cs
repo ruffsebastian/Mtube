@@ -23,7 +23,7 @@ namespace _4thHandin
             string[] separatingChars = { "\"" };   
             string[] mysplit = reply.Split(separatingChars, System.StringSplitOptions.RemoveEmptyEntries);
 
-            if (mysplit[0] != "False")
+            if (mysplit.Length > 0)
             {
                 LabelJoke.Text = mysplit[11]; //i feel a bit dirty but hey, results are results right? [no they are not]
             }

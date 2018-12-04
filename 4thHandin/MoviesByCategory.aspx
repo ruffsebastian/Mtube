@@ -11,7 +11,7 @@
             <br />
 
             <asp:Panel ID="Panel1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" Width="351px" AllowPaging="True">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" AllowPaging="True">
 
                     <Columns>
                         <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
@@ -21,18 +21,6 @@
 
                 </asp:GridView>
             </asp:Panel>
-
-            <asp:Panel ID="Panel2" runat="server">
-                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" Width="348px">
-                    <Columns>
-                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                        <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
-                        <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
-                    </Columns>
-                </asp:GridView>
-            </asp:Panel>
-
-
 
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Genre] = @Genre)">
                 <SelectParameters>

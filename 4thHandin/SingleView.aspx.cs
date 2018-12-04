@@ -22,8 +22,7 @@ namespace _4thHandin
             LabelResultDescription.Visible = false;
             LabelResultChildRating.Visible = false;
             LabelMessages.Visible = false;
-
-
+            
             string queryID = Request.QueryString["queryID"].ToString();
             SqlConnection con = new SqlConnection(ConMan.ConnStr);
             DataTable dt = new DataTable();

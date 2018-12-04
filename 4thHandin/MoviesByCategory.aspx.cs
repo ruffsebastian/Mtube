@@ -15,15 +15,13 @@ namespace _4thHandin
             SqlDataSource1.ConnectionString = ConMan.ConnStr;
             SqlDataSource2.ConnectionString = ConMan.ConnStr;
 
-            //UpdateGridView();
             Panel1.Visible = true;
-            Panel2.Visible = true;
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Panel1.Visible = true;
-            Panel2.Visible = true;
+            GridView1.SetPageIndex(0);
         }
     }
 }
