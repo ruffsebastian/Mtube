@@ -17,15 +17,24 @@ using System.Threading;
 namespace _4thHandin
 {
     public partial class Search : System.Web.UI.Page
-    { 
+    {
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlDataSource1.ConnectionString = ConMan.ConnStr;
-
-            if (GridViewDisplaySearch.Rows.Count == 1)
+            int countMovies = 0;
+            string MovieID = null;
+            foreach (GridViewRow row in GridViewDisplaySearch.Rows)
             {
-                Response.Redirect("~/SingleView/?queryID=" + GridViewDisplaySearch.Rows[0].Cells[0].Text);
+                countMovies++;
+                MovieID = row.Cells[0].Text;
+
+            }
+
+            if (countMovies == 1)
+            {
+                Response.Redirect("~/SingleView/?queryID=" + MovieID);
             }
         }
     }
 }
+
