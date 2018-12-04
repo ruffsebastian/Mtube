@@ -129,6 +129,8 @@
     <Content Include="GetImages.aspx" />
     <Content Include="SingleView.aspx" />
     <Content Include="xml\commercials.xml" />
+    <Content Include="xml\commercialsTransformed.xml" />
+    <Content Include="xml\commercialsXSLT - Copy.xslt" />
     <Content Include="xml\commercialsXSLT.xslt" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

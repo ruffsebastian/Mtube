@@ -1,1 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>Yensid Tlaw<br xmlns:c="http://my.company.com" />www.myfantasy.com<br xmlns:c="http://my.company.com" />logo1.jpg<br xmlns:c="http://my.company.com" />(111) 22222222<br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" />Tinycomp<br xmlns:c="http://my.company.com" />www.myhugo.com<br xmlns:c="http://my.company.com" />logo2.jpg<br xmlns:c="http://my.company.com" />44444444<br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" />Cartoons<br xmlns:c="http://my.company.com" />www.lotsofcartoons.com<br xmlns:c="http://my.company.com" />logo3.jpg<br xmlns:c="http://my.company.com" />55+ 66666666<br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" />Web Developers<br xmlns:c="http://my.company.com" />www.superstudents.com<br xmlns:c="http://my.company.com" />logo4.jpg<br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" /><br xmlns:c="http://my.company.com" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<commercials xmlns:c="http://my.company.com">
+  <commercial company="Yensid Tlaw" webpage="www.myfantasy.com" logo="logo1.jpg" />
+  <commercial company="Tinycomp" webpage="www.myhugo.com" logo="" />
+  <commercial company="Cartoons" webpage="www.lotsofcartoons.com" logo="logo3.jpg" />
+  <commercial company="Web Developers" webpage="www.superstudents.com" logo="logo4.jpg" />
+</commercials>

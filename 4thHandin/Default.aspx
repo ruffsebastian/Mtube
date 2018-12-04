@@ -5,7 +5,7 @@
     <div class="jumbotron">
         <h1>This is the 4th handin home page!</h1>
         <p class="lead"></p>
-        <p><a href="#" class="btn btn-primary btn-lg">Click Here For Absolution &laquo;</a></p>
+        <p><a href="#" class="btn btn-primary btn-lg">Click Hir 4 To Win&laquo;</a></p>
     </div>
 
     <div class="row">

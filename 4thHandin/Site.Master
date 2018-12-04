@@ -46,14 +46,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" runat="server" href="~/">4th Project</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/commercials">Commercials</a></li>
                         <li><a runat="server" href="~/DisplayTopMovies">Top 10 Movies</a></li>
-                        <li><a runat="server" href="~/Search">Search</a></li>
+                        <li><a runat="server" href="~/MoviesByCategory">MoviesByCategory</a></li>
                         <li><a runat="server" href="~/GetImages">GetImages</a></li>
                         <li>
                             <asp:TextBox ID="TextBoxSearch"  runat="server"></asp:TextBox><asp:Button ID="ButtonSearch" runat="server" Text="Search" OnClick="ButtonSearch_Click" /></li>
@@ -68,10 +68,13 @@
             <hr />
             <footer >
                 <center>
-            <h2><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h2>
+                    <h3><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h3>
             </center>
-                <center alt="Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CIV">
-                <p style="font-size:2em">CXI</p>
+                <center alt="Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CXI - ( ty for correction seb )">
+                                   <h4></h4>
+                     <p style="font-size:2em"> 
+                         DEVINFO: <asp:Label ID="Labelcurrentconman" runat="server" Text="Label"></asp:Label>
+                        <br /><br /><br /> CXI</p>
                 </center>
             </footer>
         </div>

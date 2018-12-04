@@ -17,9 +17,10 @@ namespace _4thHandin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            // if the xml uses a namespace the xslt must refer to this namespace
+            // if the xml uses a namespace the xslt must refer to this namespace   <--- not sure what this means or what the this refers to -ask
+            
             string sourcefile = Server.MapPath("xml/commercials.xml");
-            string xslfile = Server.MapPath("xml/commercialsXSLT.xslt");
+            string xslfile = Server.MapPath("xml/commercialsXSLT - Copy.xslt");
 
             string destinationfile = Server.MapPath("xml/commercialsTransformed.xml");
 
@@ -28,6 +29,8 @@ namespace _4thHandin
             xct.Load(xslfile);
             xct.Transform(sourcefile, null, fs);
             fs.Close();
+            
+
 
         }
     }

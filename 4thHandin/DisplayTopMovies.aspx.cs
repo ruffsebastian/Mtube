@@ -11,7 +11,8 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ConMan.ConnecStr;
+            SqlDataSource1.ConnectionString = ConMan.ConnStr;
+            SqlDataSource1.SelectCommand = ConMan.CommmStr("top10","");
         }
     }
 }

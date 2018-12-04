@@ -17,7 +17,7 @@
                     </asp:ImageField>
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT TOP (10) * FROM MovieDBList ORDER BY ViewCount DESC, Year DESC"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ></asp:SqlDataSource>
 
         
         </div>
