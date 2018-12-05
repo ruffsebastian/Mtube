@@ -22,7 +22,8 @@ namespace _4thHandin
             LabelResultDescription.Visible = false;
             LabelResultChildRating.Visible = false;
             LabelMessages.Visible = false;
-            
+
+
             string queryID = Request.QueryString["queryID"].ToString();
             SqlConnection con = new SqlConnection(ConMan.ConnStr);
             DataTable dt = new DataTable();
@@ -54,7 +55,16 @@ namespace _4thHandin
                 foreach (XmlNode node in nodelist)
                 {
                     string poster = node.SelectSingleNode("@poster").InnerText;
+                    if (poster == "N/A" || poster == "FAIL")
+                    {
+
+                        ImagePoster.ImageUrl = "/Myfiles/default-img.jpg";
+                    }
+                    else
+                    {
+
                     ImagePoster.ImageUrl = poster;
+                    }
                 }
 
                 LabelResultTitle.Text = "Title: " + nodelist[0].SelectSingleNode("@title").InnerText;
@@ -76,7 +86,7 @@ namespace _4thHandin
             {
                 LabelMessages.Text = "Movie not found";
                 LabelMessages.Visible = true;
-                ImagePoster.ImageUrl = "~/Myfiles/default-img.png";
+                ImagePoster.ImageUrl = "/Myfiles/default-img.jpg";
                 LabelResultTitle.Text = "no Results";
             }
         }

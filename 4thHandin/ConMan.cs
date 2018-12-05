@@ -17,9 +17,9 @@ namespace _4thHandin
         //but feel free to use your constring to set up webcontrols that won't play nice with ConMan, the dynamicism is too much for them i guess.
 
         //public static string ConnStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreasHome"].ToString();
-        public static string ConnStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreas"].ToString();
+        //public static string ConnStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringAndreas"].ToString();
         //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringMihnea"].ToString();
-        //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringStan"].ToString();
+        public static string ConnStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringStan"].ToString();
         //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringSebastian"].ToString();
         //public static string ConnecStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionStringRazvanHome"].ToString();
 

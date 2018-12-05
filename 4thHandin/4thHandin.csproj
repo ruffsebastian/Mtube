@@ -124,6 +124,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Myfiles\default-img.jpg" />
+    <Content Include="img\mask-title.png" />
     <Content Include="MoviesByCategory.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="GetImages.aspx" />
@@ -251,7 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Myfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

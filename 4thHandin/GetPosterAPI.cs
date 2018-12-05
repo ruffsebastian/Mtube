@@ -33,6 +33,7 @@ namespace _4thHandin
                 {
                      poster = node.SelectSingleNode("@poster").InnerText;
                 }
+
             }
             return poster;
         }
