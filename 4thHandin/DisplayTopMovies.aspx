@@ -5,6 +5,30 @@
     <div class="row">
         <div class="col-md-12">
            
+           
+            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource2">
+                <ItemTemplate>
+                         
+
+                     <div class="card card-1">
+                         <a href='SingleView.aspx?queryID=<%# Eval ("ID")%>'>
+                         <div class="gradient"></div>
+                    
+                    <asp:Image ID="Image2" Height="100%" runat="server" ImageUrl='<%# Eval ("PosterPath")%>' />
+                    <br />
+                        <span class="text-middle">
+                   <asp:Label ID="TitleLabel" CssClass="text-middle" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
+                            </span>
+                        </a>
+                         </div> 
+                       
+                </ItemTemplate>
+            </asp:Repeater>
+                                             
+
+
+            <!--<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringStan %>" SelectCommand="SELECT TOP 10 [ID], [PosterPath], [Title] FROM [MovieDBList] ORDER BY ViewCount DESC, Year DESC"></asp:SqlDataSource>
+           
 
             <asp:GridView ID="GridViewDisplayTopMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1">
                 <Columns>
@@ -18,6 +42,8 @@
                 </Columns>
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ></asp:SqlDataSource>
+            -->
+
 
         
         </div>

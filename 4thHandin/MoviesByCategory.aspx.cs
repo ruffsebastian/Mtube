@@ -14,14 +14,27 @@ namespace _4thHandin
 
             SqlDataSource1.ConnectionString = ConMan.ConnStr;
             SqlDataSource2.ConnectionString = ConMan.ConnStr;
-
+            SqlDataSource5.ConnectionString = ConMan.ConnStr;
+            //UpdateGridView();
             Panel1.Visible = true;
+            Panel2.Visible = true;
+
+           /* foreach (RepeaterItem item in Repeater1.Items)
+            {
+                if (item.ItemType ==   )
+                {
+                    var PosterPath = (Image)item.FindControl("PosterPath");
+
+                    //Do something with your checkbox...
+                    PosterPath.ImageUrl = "/Myfiles/default-img.jpg";
+                }
+            }*/
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Panel1.Visible = true;
-            GridView1.SetPageIndex(0);
+            Panel2.Visible = true;
         }
     }
 }

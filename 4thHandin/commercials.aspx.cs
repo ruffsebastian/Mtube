@@ -29,7 +29,20 @@ namespace _4thHandin
             xct.Load(xslfile);
             xct.Transform(sourcefile, null, fs);
             fs.Close();
-            
+
+            int counter = GridView1.Rows.Count;
+
+            new Random().Next(0, counter);
+            int i = 0;
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                row.Style.Add("display","none");
+               i++;
+                if (row.RowIndex == i){
+                    row.Style.Add("display", "block");
+
+                }
+            }
 
 
         }
