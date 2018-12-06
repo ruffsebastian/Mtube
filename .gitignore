@@ -1,0 +1,7 @@
+
+*.ide
+*.ide-shm
+*.ide-wal
+.vs/4thHandin/v15/Server/sqlite3/storage.ide-wal
+.vs/4thHandin/v15/Server/sqlite3/storage.ide-shm
+.vs/4thHandin/v15/Server/sqlite3/storage.ide
