@@ -106,11 +106,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="commercials.aspx" />
+    <Content Include="Content\42\Site.css" />
+    <Content Include="Content\69b\Site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\_Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="DisplayTopMovies.aspx" />
     <Content Include="favicon.ico" />
