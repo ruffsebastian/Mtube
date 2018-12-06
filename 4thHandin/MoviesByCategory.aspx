@@ -9,7 +9,7 @@
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT DISTINCT [Genre] FROM [MovieDBList]"></asp:SqlDataSource>
             
             <br />
-                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Genre] = @Genre)" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionStringStan %>">
+                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Genre] = @Genre)" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DropDownList1" Name="Genre" PropertyName="SelectedValue" Type="String" />
                         </SelectParameters>

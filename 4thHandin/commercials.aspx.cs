@@ -12,39 +12,51 @@ using System.Net;
 
 namespace _4thHandin
 {
-    public partial class commercials : System.Web.UI.Page
+    public partial class Commercials : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            // if the xml uses a namespace the xslt must refer to this namespace   <--- not sure what this means or what the this refers to -ask
-            
-            string sourcefile = Server.MapPath("xml/commercials.xml");
-            string xslfile = Server.MapPath("xml/commercialsXSLT - Copy.xslt");
 
-            string destinationfile = Server.MapPath("xml/commercialsTransformed.xml");
+            // xml to gridview via dataset - now how do i make this crud exactly torben?
+            DataSet xmldata = new DataSet();
+            xmldata.ReadXml(MapPath("~/xml/commercialsTransformed.xml"));
+            GridView2.DataSource = xmldata;
+            GridView2.DataBind();
+            
+
+            // if the xml uses a namespace the xslt must refer to this namespace   <--- not sure what this means or what the this refers to -ask
+            // later note: ah, so thats why we had to prefix all our xlst stuff with c: to make it work... now being that this "c" could be anything why the fuck not call it "ourdummynamespace"? 
+            // point being, use names that make sense / inform the person reading the code - its better for everyone. it only kinda makes sense with things like s=string or i=int if the given thing only needs to exist for counting
+            // but then why not call it counter? hell, call you could it therandomnumberwegeneratefromzerotothenumberofcommercialswehave and skip comments - bad example but the overall point is valid
+
+            int randomcommercialToDisplayPosition = new Random().Next(0, GridView1.Rows.Count);  // <-- kinda like that
+
+            XsltArgumentList argsList = new XsltArgumentList();
+            argsList.AddParam("position", "", randomcommercialToDisplayPosition);
+
+            string sourcefile = Server.MapPath("xml/commercials.xml");
+            string xslfile = Server.MapPath("xml/commercialsXSLT - Attributes.xslt");
+
+            string destinationfile = Server.MapPath("xml/commercialsTransformedAttr.xml");
 
             FileStream fs = new FileStream(destinationfile, FileMode.Create);
             XslCompiledTransform xct = new XslCompiledTransform();
             xct.Load(xslfile);
-            xct.Transform(sourcefile, null, fs);
-            fs.Close();
+            xct.Transform(sourcefile, argsList, fs);
+            fs.Close();            
 
-            int counter = GridView1.Rows.Count;
-
-            new Random().Next(0, counter);
-            int i = 0;
             foreach (GridViewRow row in GridView1.Rows)
-            {
-                row.Style.Add("display","none");
-               i++;
-                if (row.RowIndex == i){
-                    row.Style.Add("display", "block");
-
+            {         
+                if (row.RowIndex != randomcommercialToDisplayPosition)    // if the current rows position in the order of elements/array of objects/gridview of rows is not the same as the random number - hide it
+                {
+                    row.Style.Add("display", "none"); //this way around to avoid having to set the rows to initially be hidden
+                }
+                else
+                {
+                    //increase the viewcount of the commercial in this position
                 }
             }
-
-
         }
     }
 }

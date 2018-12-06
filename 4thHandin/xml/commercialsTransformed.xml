@@ -1,7 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <commercials xmlns:c="http://my.company.com">
-  <commercial company="Yensid Tlaw" webpage="www.myfantasy.com" logo="logo1.jpg" />
-  <commercial company="Tinycomp" webpage="www.myhugo.com" logo="logo2.jpg" />
-  <commercial company="Cartoons" webpage="www.lotsofcartoons.com" logo="logo3.jpg" />
-  <commercial company="Web Developers" webpage="www.superstudents.com" logo="logo4.jpg" />
+  <commercial>
+    <company>Yensid Tlaw</company>
+    <webpage>www.myfantasy.com</webpage>
+    <logo>logo1.jpg</logo>
+    <viewcount>0</viewcount>
+  </commercial>
+  <commercial>
+    <company>Tinycomp</company>
+    <webpage>www.myhugo.com</webpage>
+    <logo>logo2.jpg</logo>
+    <viewcount>0</viewcount>
+  </commercial>
+  <commercial>
+    <company>Cartoons</company>
+    <webpage>www.lotsofcartoons.com</webpage>
+    <logo>logo3.jpg</logo>
+    <viewcount>0</viewcount>
+  </commercial>
+  <commercial>
+    <company>Web Developers</company>
+    <webpage>www.superstudents.com</webpage>
+    <logo>logo4.jpg</logo>
+    <viewcount>0</viewcount>
+  </commercial>
 </commercials>
