@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MoviesByCategory.aspx.cs" Inherits="_4thHandin.MoviesByCategory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-            Search movie
-            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Genre" DataValueField="Genre" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <br />
+            <asp:DropDownList CssClass="btn btn-default dropdown-toggle" ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Genre" DataValueField="Genre" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             </asp:DropDownList>
             <br />
             
@@ -19,20 +19,25 @@
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource5">
                 <ItemTemplate>
                          
-
-                     <div class="card card-1">
-                         <a href='SingleView.aspx?queryID=<%# Eval ("ID")%>'>
+                    <a href='SingleView.aspx?queryID=<%# Eval ("ID")%>'>
+                     <div class="card card-1 card-movie-by-category">
+                         
                          <div class="gradient"></div>
                     
-                    <asp:Image ID="PosterPath" Height="100%" runat="server" ImageUrl='<%# Eval ("PosterPath")%>' onerror="this.src='../Myfiles/default-img.jpg'" />
+                    <asp:Image ID="PosterPath" Height="100%" runat="server" ImageUrl='<%# Eval ("PosterPath")%>' onerror="this.src='../Myfiles/default-img.jpg'" AlternateText='<%# Eval("Title") %>' />
 
                              <!--<asp:Image ID="Image1" CssClass="default-pic" Height="100%" runat="server" ImageUrl="../Myfiles/default-img.jpg" />-->
-                    <br />
+                              <label class="card-bottom-year"><%# Eval("Year") %></label>
+                              <label class="card-bottom-genre"><%# Eval("Genre") %></label>
+                
                         <span class="text-middle">
                    <asp:Label ID="TitleLabel" CssClass="text-middle" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
                             </span>
-                        </a>
+                        
+
+
                          </div> 
+                     </a>
                        
                 </ItemTemplate>
             </asp:Repeater>

@@ -12,8 +12,8 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ConMan.ConnStr;
-            SqlDataSource1.SelectCommand = ConMan.CommmStr("top10","");
+            SqlDataSource2.ConnectionString = ConMan.ConnStr;
+            SqlDataSource2.SelectCommand = ConMan.CommmStr("top10","");
 
 
             //HyperLink ShowMovie = (HyperLink)e.Item.FindControl("ShowMovie");

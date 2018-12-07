@@ -6,15 +6,15 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %> - MTUBE</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
     <form runat="server">
@@ -38,28 +38,35 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top navbar-white">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle burger-blue" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar "></span>
+                        <span class="icon-bar "></span>
+                        <span class="icon-bar "></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">4th Project</a>
+                    <a class="navbar-brand" runat="server" href="~/">
+                        <img src="img/mtube.png" alt="Mtube" height="50" style="margin-top: -15px;" /></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/commercials">Commercials</a></li>
-                        <li><a runat="server" href="~/DisplayTopMovies">Top 10 Movies</a></li>
-                        <li><a runat="server" href="~/MoviesByCategory">MoviesByCategory</a></li>
-                        <li><a runat="server" href="~/GetImages">GetImages</a></li>
-                        <li>
-                           <asp:TextBox ID="TextBoxSearch"  runat="server"></asp:TextBox><asp:Button ID="ButtonSearch" runat="server" Text="Search" OnClick="ButtonSearch_Click" />
-                        </li>
+                        <li><a runat="server" href="~/MoviesByCategory">Movie Categories</a></li>
+
+
 
                     </ul>
+                    <div style="margin-top: 8px; margin-left:5px; float: right;">
+                        <asp:Button ID="ButtonSearch" runat="server" Text="Search" OnClick="ButtonSearch_Click" CssClass="btn btn-outline-secondary top-search-button" />
+                    </div>
+
+                    <div style="margin-top: 8px; float: right;">
+                        <asp:TextBox ID="TextBoxSearch" runat="server" CssClass="form-control sizing-addon1"></asp:TextBox>
+                    </div>
+                    
+
                 </div>
             </div>
         </div>
@@ -67,19 +74,38 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer >
-                <center>
-                    <h3><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h3>
-            </center>
-                <center alt="Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CXI - ( ty for correction seb )">
-                                   <h4></h4>
-                     <p style="font-size:2em"> 
-                         DEVINFO: <asp:Label ID="Labelcurrentconman" runat="server" Text="Label"></asp:Label>
-                        <br /><br /><br /> CXI</p>
-                </center>
+            <footer>
+                <a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+
+                <div style="text-align: center">
+                    <h3>
+                        <asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></h3>
+
+                    <p style="font-size: 10px; color: rgba(0, 0, 0, 0.5);">Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CXI </p>
+                </div>
+
             </footer>
         </div>
 
     </form>
+    <script>
+        // ===== Scroll to Top ==== 
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200);    // Fade in the arrow
+            } else {
+                $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () {      // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0                       // Scroll to top of body
+            }, 500);
+        });
+
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
 </body>
 </html>
