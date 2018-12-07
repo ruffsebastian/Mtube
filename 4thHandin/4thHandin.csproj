@@ -129,13 +129,29 @@
     <Content Include="Myfiles\default-img.jpg" />
     <Content Include="img\mask-title.png" />
     <Content Include="MoviesByCategory.aspx" />
+    <Content Include="Myfiles\Latestresult.xml" />
     <Content Include="Search.aspx" />
     <Content Include="GetImages.aspx" />
     <Content Include="SingleView.aspx" />
     <Content Include="xml\commercials.xml" />
     <Content Include="xml\commercialsTransformed.xml" />
+    <Content Include="xml\commercialsTransformedAttr.xml" />
+    <Content Include="xml\commercialsXSLT - Attributes.xslt" />
     <Content Include="xml\commercialsXSLT - Copy.xslt" />
+    <Content Include="xml\commercialsXSLT - Increment.xslt" />
+    <Content Include="xml\commercialsXSLT - Nodes.xslt" />
     <Content Include="xml\commercialsXSLT.xslt" />
+    <Content Include="DataAccessLayer.xsc">
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
+    </Content>
+    <None Include="DataAccessLayer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataAccessLayer.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataAccessLayer.xss">
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -181,7 +197,11 @@
     <Compile Include="commercials.aspx.designer.cs">
       <DependentUpon>commercials.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ConMan.cs" />
+    <Compile Include="DataAccessLayer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,6 +228,7 @@
       <DependentUpon>MoviesByCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="OmdbAPI.cs" />
+    <Compile Include="ProjectLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>

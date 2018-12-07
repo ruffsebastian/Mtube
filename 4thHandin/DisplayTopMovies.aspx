@@ -27,7 +27,8 @@
                                              
 
 
-<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>" SelectCommand="SELECT TOP 10 [ID], [PosterPath], [Title] FROM [MovieDBList] ORDER BY ViewCount DESC, Year DESC"></asp:SqlDataSource>           
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>" 
+                                                                  SelectCommand="MovieSelectTop10Query" SelectCommandType="StoredProcedure"></asp:SqlDataSource>           
 
             <asp:GridView ID="GridViewDisplayTopMovies" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1">
                 <Columns>

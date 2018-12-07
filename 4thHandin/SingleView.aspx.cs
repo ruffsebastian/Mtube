@@ -15,35 +15,24 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LabelResultTitle.Visible = false;
-            LabelResultRating.Visible = false;
-            LabelResultYear.Visible = false;
-            LabelResultActors.Visible = false;
-            LabelResultDescription.Visible = false;
-            LabelResultChildRating.Visible = false;
-            LabelMessages.Visible = false;
-
+            //redirect to home if there is no querystring
+            if (string.IsNullOrWhiteSpace(Request.QueryString["queryID"])) {
+                Response.Redirect("~/");
+            }
+                   
+            resultspanel.Visible = false;
 
             string queryID = Request.QueryString["queryID"].ToString();
-            SqlConnection con = new SqlConnection(ConMan.ConnStr);
-            DataTable dt = new DataTable();
-            con.Open();
-            SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("select * from MovieDBList where id = " + Int32.Parse(queryID) 
-                + " update MovieDBList set ViewCount = ViewCount + 1 where ID = " + Int32.Parse(queryID), con);
 
-            myReader = myCommand.ExecuteReader();
-            //-----------------------------------------------------------------------------------------------// 
+            ProjectLogic.Movie themovie = new ProjectLogic.Movie(queryID); //get movie object via id, fetching db info for it
 
-            //get movie name from database and show in label
-            while (myReader.Read())
-            {
-                LabelMessages.Text = (myReader["Title"].ToString());
-                LabelMessages.Visible = true;
-                //and whatever you have to retrieve
-            }
+            themovie.IncrementViewcount(); //what it says on the tin, this is how we track views
 
-            string result = OmdbAPI.NameAPI(LabelMessages.Text);
+            //get movie name from object and show in label
+            LabelMessages.Text = themovie.ToString();
+            LabelMessages.Visible = true;
+            
+            string result = OmdbAPI.NameAPI(themovie.title);
 
             File.WriteAllText(Server.MapPath("~/MyFiles/Latestresult.xml"), result);
             XmlDocument doc = new XmlDocument();
@@ -74,16 +63,18 @@ namespace _4thHandin
                 LabelResultDescription.Text = "Description: " + nodelist[0].SelectSingleNode("@plot").InnerText;
                 LabelResultChildRating.Text = "Child Rating: " + nodelist[0].SelectSingleNode("@rated").InnerText;
 
-                LabelResultTitle.Visible = true;
-                LabelResultRating.Visible = true;
-                LabelResultYear.Visible = true;
-                LabelResultActors.Visible = true;
-                LabelResultDescription.Visible = true;
-                LabelResultChildRating.Visible = true;
-
+                resultspanel.Visible = true;
             }
             else
             {
+                resultspanel.Visible = true;
+                LabelResultTitle.Visible = false;
+                LabelResultRating.Visible = false;
+                LabelResultYear.Visible = false;
+                LabelResultActors.Visible = false;
+                LabelResultDescription.Visible = false;
+                LabelResultChildRating.Visible = false;
+
                 LabelMessages.Text = "Movie not found";
                 LabelMessages.Visible = true;
                 ImagePoster.ImageUrl = "/Myfiles/default-img.jpg";

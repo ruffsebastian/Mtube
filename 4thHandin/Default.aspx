@@ -1,19 +1,38 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="_4thHandin._Default" %>
 
+
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
-        <h1>This is the 4th handin home page!</h1>
-        <p class="lead"></p>
-        <p><a href="#" class="btn btn-primary btn-lg">Click Hir 4 To Win&laquo;</a></p>
-    </div>
+     <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+                 ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>" 
+                 SelectCommand="MovieSelectTop10Query" SelectCommandType="StoredProcedure"></asp:SqlDataSource> 
 
-    <div class="row">
-        <div class="col-md-12">
-            
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <asp:TextBox ID="TextBoxSearch" cssClass="navsearch" runat="server"></asp:TextBox>
+                        <asp:Button ID="ButtonSearch" runat="server" Text="Search" OnClick="ButtonSearch_Click" />
+                    </div>
+                    <div class="col-md-3"></div>
+                 </div>
+        <div class="row">
+            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource2">
+                <ItemTemplate>
+                     <div class="card card-1">
+                         <a href='SingleView.aspx?queryID=<%# Eval ("ID")%>'>
+                         <div class="gradient"></div>
+                    
+                    <asp:Image ID="Image2" Height="100%" runat="server" ImageUrl='<%# Eval ("PosterPath")%>' />
+                    <br />
+                        <span class="text-middle">
+                   <asp:Label ID="Label1" CssClass="text-middle" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
+                            </span>
+                        </a>
+                         </div> 
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
-    </div>
-
 </asp:Content>
 
 

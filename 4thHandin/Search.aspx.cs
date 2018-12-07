@@ -20,7 +20,7 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ConMan.ConnStr;
+            SqlDataSource1.ConnectionString = ProjectLogic.ConnStr;
             int countMovies = 0;
             string MovieID = null;
             foreach (GridViewRow row in GridViewDisplaySearch.Rows)
