@@ -20,18 +20,15 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ProjectLogic.ConnStr;
-            int countMovies = 0;
-            string MovieID = null;
-            foreach (GridViewRow row in GridViewDisplaySearch.Rows)
-            {
-                countMovies++;
-                MovieID = row.Cells[0].Text;
-            }
+            SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
 
-            if (countMovies == 1)
+            if (GridViewDisplaySearch.Rows.Count == 1)
             {
-                Response.Redirect("~/SingleView/?queryID=" + MovieID);
+                Response.Redirect("~/SingleView/?queryID=" + GridViewDisplaySearch.Rows[0].Cells[0].Text);
+            }
+            if (GridViewDisplaySearch.Rows.Count == 0)
+            {
+                //show no results message 
             }
         }
     }

@@ -24,15 +24,15 @@ namespace _4thHandin
 
             string queryID = Request.QueryString["queryID"].ToString();
 
-            ProjectLogic.Movie themovie = new ProjectLogic.Movie(queryID); //get movie object via id, fetching db info for it
+            FourthProjectLogic.Movie themovie = new FourthProjectLogic.Movie(queryID); //get movie object via id, fetching db info for it
 
-            themovie.IncrementViewcount(); //what it says on the tin, this is how we track views
+            themovie.IncrementViewcount2(); //what it says on the tin, this is how we track views
 
             //get movie name from object and show in label
             LabelMessages.Text = themovie.ToString();
             LabelMessages.Visible = true;
             
-            string result = OmdbAPI.NameAPI(themovie.title);
+            string result = FourthProjectLogic.OmdbAPI.NameAPI(themovie.title);
 
             File.WriteAllText(Server.MapPath("~/MyFiles/Latestresult.xml"), result);
             XmlDocument doc = new XmlDocument();

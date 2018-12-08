@@ -216,7 +216,6 @@
     <Compile Include="DisplayTopMovies.aspx.designer.cs">
       <DependentUpon>DisplayTopMovies.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GetPosterAPI.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,8 +226,7 @@
     <Compile Include="MoviesByCategory.aspx.designer.cs">
       <DependentUpon>MoviesByCategory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OmdbAPI.cs" />
-    <Compile Include="ProjectLogic.cs" />
+    <Compile Include="FourthProjectLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
@@ -258,7 +256,6 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="TokenClass.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

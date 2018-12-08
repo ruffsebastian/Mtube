@@ -12,9 +12,9 @@ namespace _4thHandin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            SqlDataSource1.ConnectionString = ProjectLogic.ConnStr;
-            SqlDataSource2.ConnectionString = ProjectLogic.ConnStr;
-            SqlDataSource5.ConnectionString = ProjectLogic.ConnStr;
+            SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
+            SqlDataSource2.ConnectionString = FourthProjectLogic.ConnStr;
+            SqlDataSource5.ConnectionString = FourthProjectLogic.ConnStr;
             //UpdateGridView();
             Panel1.Visible = true;
             Panel2.Visible = true;

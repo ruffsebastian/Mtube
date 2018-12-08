@@ -12,7 +12,7 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ProjectLogic.ConnStr;
+            SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
             SqlDataSource1.SelectCommand = "MovieSelectTop10Query";
             SqlDataSource1.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
 

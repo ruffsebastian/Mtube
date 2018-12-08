@@ -11,26 +11,21 @@ namespace _4thHandin
     public partial class SiteMaster : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            
+        {            
             //Display a Chuck Norris joke via API about a random teacher
-            WebClient client = new WebClient();
+           LabelJoke.Text = FourthProjectLogic.GetJokeFromAPI();
 
-            string[] Teachers = { "Torben", "Tue", "Morten", "Jesper" };
-            string reply = client.DownloadString("http://api.icndb.com/jokes/random?firstName=" + Teachers[new Random().Next(0, Teachers.Length)]);
 
-            string[] separatingChars = { "\"" };   
-            string[] mysplit = reply.Split(separatingChars, System.StringSplitOptions.RemoveEmptyEntries);
+            doyouhave2012.Text = FourthProjectLogic.Movie.GetTitleByIdDal(1);
+            doyouhavefrozen.Text = FourthProjectLogic.Movie.GetById(1).ToString();
 
-            if (mysplit[0] != "False")
-            {
-                LabelJoke.Text = mysplit[11]; //i feel a bit dirty but hey, results are results right? [no they are not]
-            }
+
+            
         }
 
         protected void ButtonSearch_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/search/?queryName=" + TextBoxSearch.Text);
+            FourthProjectLogic.SearchMovies(TextBoxSearch.Text);
         }
     }
 }
