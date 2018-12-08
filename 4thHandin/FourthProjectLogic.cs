@@ -79,8 +79,48 @@ namespace _4thHandin
                 HttpContext.Current.Response.Redirect("~/search/?queryName=" + searchterm);
         }
 
+        public static void CheckCommercials()
+        {
+            // do the xslt transformation on the commercials.xml only if we havent done so, or if we deleted it to force a refresh
+            if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml")))
+            {
+                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercials.xml");
+                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsXSLT - Attributes.xslt");
+
+                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
+
+                FileStream fs = new FileStream(destinationfile, FileMode.Create);
+                XslCompiledTransform xct = new XslCompiledTransform();
+                xct.Load(xslfile);
+                xct.Transform(sourcefile, null, fs);
+                fs.Close();
+            }
+        }
+
+        /* xsltargumetnlist example, for viewcount */
+        /*
+        public static void TrackCommercialViews(int randomcommercialToDisplayPosition)
+        {
+            XsltArgumentList argsList = new XsltArgumentList();
+            argsList.AddParam("position", "", randomcommercialToDisplayPosition);
+
+            string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
+            string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsXSLT - Increment.xslt");
+
+            string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
+
+            FileStream fs = new FileStream(destinationfile, FileMode.Create);
+            XslCompiledTransform xct = new XslCompiledTransform();
+            xct.Load(xslfile);
+            xct.Transform(sourcefile, argsList, fs);
+            fs.Close();
+        }
+        */
+
         public class Movie  
         {
+            public static DataAccessLayerTableAdapters.MovieDBListTableAdapter MovieTableAdapter = new DataAccessLayerTableAdapters.MovieDBListTableAdapter();
+            
             public int id;
             public string title;
             public string genre;
@@ -96,29 +136,68 @@ namespace _4thHandin
                 this.viewcount = viewcount;
                 this.posterpath = posterpath;
             }
-            public Movie( string id)             //constructor setting properties by getting a list of movies by id (because we dont have a method for getting a single movie at the moment, laziness i guess)  and grabbing values from the only result
+            //constructor via DataSet - essentially the same as searching for movie by id but more efficient code-wise... 
+            //might be a bit cheeky tho, certainly dont wanna mass-create objects like this(since it would probably be calling the db for every object)
+            //its a bit annoying having to instantiate a movie to get the value too kinda... although having the object is very handy
+            //usage example:  FourthProjectLogic.Movie themovie = new FourthProjectLogic.Movie(queryID);  and then something like textbox.text = themovie.title;
+            public Movie (int ID)                                     
             {
-                var movieList = new List<Movie>(ListMovies("byid", id));   //360 noscope shit right here - create the list of movies and fill it from method
-                
-                // [below] very optimistic guess at property access? eh, would work in js same for the rest of em .... ugh, what the fuck is it i need to do.. .list of items, not arraylist JUST DO IT <<---- This was a really good idea
-                // context: arraylists suck balls.
-                this.id = movieList[0].id; 
-                this.title = movieList[0].title;
-                this.genre = movieList[0].title;
-                this.year = movieList[0].year;
-                this.viewcount = movieList[0].viewcount;
-                this.posterpath = movieList[0].posterpath;
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
 
-                //fill with default values, leave off, get from db via id? trying via db   <-----That worked, wow.
-                //not sure if smart or retarded - could i be getting this info easier? probably, but this is pretty clever anyway.
+                this.id = Int32.Parse(movieDBListRows[0]["id"].ToString());
+                this.title = movieDBListRows[0]["title"].ToString();
+                this.genre = movieDBListRows[0]["genre"].ToString();
+                this.year = Int32.Parse(movieDBListRows[0]["year"].ToString());
+                this.viewcount = Int32.Parse(movieDBListRows[0]["viewcount"].ToString());
+                this.posterpath = movieDBListRows[0]["posterpath"].ToString();
+            }
+
+            //early test of MovieDBListDataTable capabilities, only gets the title instead of creating an object.
+            //usage example:  textbox.text = FourthProjectLogic.GetTitleByIdDal(queryID);
+            public static String GetTitleByIdDal(int ID)
+            {
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
+
+                return movieDBListRows[0][1].ToString();
             }
 
             public override string ToString()
             {
-                string outputtet = "This Movie is called " + this.title + ", was made in " + this.year + " and is in the genre " + this.genre;
-                       outputtet += "it has been viewed " + this.viewcount + " times. its poster url is " + this.posterpath;
+                string outputtet = "That Movie " + this.title + ", i think it was made in " + this.year + " or so... was one of those " + this.genre;
+                       outputtet += " flicks... folks round here have taken a shine to it " + this.viewcount + " times. you can find its poster at ye olde uniform resource locator " + this.posterpath;
                 return outputtet;
+            }            
+
+            public void IncrementViewcount()
+            {
+                MovieTableAdapter.Update(this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
             }
+
+            public static List<Movie> ListMoviesByGenre(string Genre)  
+            {
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByGenre(Genre);   // this shit right here... 
+                return MovieListLoader(movieDBListRows);
+            }
+
+            public static List<Movie> MovieListLoader(DataAccessLayer.MovieDBListDataTable movieDBListRows)
+            {
+                var movieList = new List<Movie>();
+
+                foreach (DataAccessLayer.MovieDBListRow row in movieDBListRows)
+                {
+                    int id = Int32.Parse(row["id"].ToString());
+                    string title = row["title"].ToString();
+                    string genre = row["genre"].ToString();
+                    int year = Int32.Parse(row["year"].ToString());
+                    int viewcount = Int32.Parse(row["viewcount"].ToString());
+                    string posterpath = row["posterpath"].ToString();
+                    Movie readmovie = new Movie(id, title, genre, year, viewcount, posterpath);
+                    movieList.Add(readmovie);
+                }
+                return movieList;
+            }
+
+            // fuck everything below here
 
             /* below method is a bit of a marrige of new and old - at the moment im only using the byid case and only want one result. should make a replacement that uses stored procedures like IncrementViewcount  */
             /* Point being: THIS METHODS CODE IS PRETTY STUPID, DONT IMITATE */
@@ -169,14 +248,6 @@ namespace _4thHandin
                 return movieList;
             }
 
-            /* usage guesstimation: incviewcount when details viewed - called on singleview pageload 
-
-            Movie mToUpdate = new Movie(query) // make a constructor that takes one arg (blindcoded, see if it works)
-            mToUpdate.IncrementViewcount();
-
-                sweet, it worked - just changed the names of the var and query - also, very useful to have in general so named it themovie instead of keeping it named to this scope of usage.
-
-            */
 
             public static List<Movie> ListMoviesCateogry(string genre)
             {
@@ -213,114 +284,7 @@ namespace _4thHandin
                 con.Close();*/
             }
 
-            public static DataAccessLayerTableAdapters.MovieDBListTableAdapter MovieTableAdapter = new DataAccessLayerTableAdapters.MovieDBListTableAdapter();
-
-            /* now we're talking */
-            public void IncrementViewcount2()
-            {
-                MovieTableAdapter.Update(this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
-            }
-
-
-            public static String GetTitleByIdDal(int ID)
-            {
-                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
-
-                return movieDBListRows[0][1].ToString();
-            }
-
-            public static Movie GetById(int ID)
-            {
-                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
-                
-                int id = Int32.Parse(movieDBListRows[0]["id"].ToString());
-                string title = movieDBListRows[0]["title"].ToString();
-                string genre = movieDBListRows[0]["genre"].ToString();
-                int year = Int32.Parse(movieDBListRows[0]["year"].ToString());
-                int viewcount = Int32.Parse(movieDBListRows[0]["viewcount"].ToString());
-                string posterpath = movieDBListRows[0]["posterpath"].ToString();
-
-                Movie movie = new Movie(id, title, genre, year, viewcount, posterpath);
-
-                return movie;
-            }
-
-
-            public static Movie GetByIdOld(int ID)
-            {
-                var movieList = new List<Movie>();
-
-                DataTable dt = MovieTableAdapter.GetDataByID(ID);
-                    DataTableReader dtr = new DataTableReader(dt);                
-                while (dtr.Read()) { 
-                    foreach (DataRow row in dtr)
-                    {
-                        
-
-                        Movie readmovie = new Movie(id, title, genre, year, viewcount, posterpath);
-                        movieList.Add(readmovie);
-                    }
-                }
-                return movieList[0]; 
-            }
-
-
-            //non-query stored procedure example via modified movie object - uses the automatically constructed stored procedure for updating movies 
-            public void IncrementViewcount()
-            {
-                this.viewcount = this.viewcount + 1; //increment the value of the object before updating it in the db with the new values
-
-                SqlConnection con = new SqlConnection(FourthProjectLogic.ConnStr);
-                SqlCommand cmd = new SqlCommand("MovieUpdateCommand", con){CommandType = CommandType.StoredProcedure};  //by id from param from object 
-                cmd.Parameters.AddWithValue("@Id", this.id);
-                cmd.Parameters.AddWithValue("@Original_Id", this.id);
-                cmd.Parameters.AddWithValue("@Title", this.title);
-                cmd.Parameters.AddWithValue("@Genre", this.genre);
-                cmd.Parameters.AddWithValue("@Year", this.year);
-                cmd.Parameters.AddWithValue("@Viewcount", this.viewcount);
-                cmd.Parameters.AddWithValue("@Posterpath", this.posterpath);
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
         }
-        public static void CheckCommercials()
-        {
-            // do the xslt transformation on the commercials.xml only if we havent done so, or if we deleted it to force a refresh
-            if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml")))
-            {
-                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercials.xml");
-                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsXSLT - Attributes.xslt");
-
-                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
-
-                FileStream fs = new FileStream(destinationfile, FileMode.Create);
-                XslCompiledTransform xct = new XslCompiledTransform();
-                xct.Load(xslfile);
-                xct.Transform(sourcefile, null, fs);
-                fs.Close();
-            }
-        }
-
-        /* xsltargumetnlist example, for viewcount */
-        /*
-        public static void TrackCommercialViews(int randomcommercialToDisplayPosition)
-        {
-            XsltArgumentList argsList = new XsltArgumentList();
-            argsList.AddParam("position", "", randomcommercialToDisplayPosition);
-
-            string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
-            string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsXSLT - Increment.xslt");
-
-            string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
-
-            FileStream fs = new FileStream(destinationfile, FileMode.Create);
-            XslCompiledTransform xct = new XslCompiledTransform();
-            xct.Load(xslfile);
-            xct.Transform(sourcefile, argsList, fs);
-            fs.Close();
-        }
-        */
+     
     }
 }

@@ -16,8 +16,7 @@ namespace _4thHandin
            LabelJoke.Text = FourthProjectLogic.GetJokeFromAPI();
 
 
-            doyouhave2012.Text = FourthProjectLogic.Movie.GetTitleByIdDal(1);
-            doyouhavefrozen.Text = FourthProjectLogic.Movie.GetById(1).ToString();
+           
 
 
             

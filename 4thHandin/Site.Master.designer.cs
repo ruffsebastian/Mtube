@@ -40,24 +40,6 @@ namespace _4thHandin {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
         
         /// <summary>
-        /// doyouhavefrozen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label doyouhavefrozen;
-        
-        /// <summary>
-        /// doyouhave2012 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label doyouhave2012;
-        
-        /// <summary>
         /// LabelJoke control.
         /// </summary>
         /// <remarks>

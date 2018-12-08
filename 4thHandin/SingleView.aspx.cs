@@ -22,11 +22,11 @@ namespace _4thHandin
                    
             resultspanel.Visible = false;
 
-            string queryID = Request.QueryString["queryID"].ToString();
+            int queryID = Int32.Parse(Request.QueryString["queryID"]);
 
             FourthProjectLogic.Movie themovie = new FourthProjectLogic.Movie(queryID); //get movie object via id, fetching db info for it
 
-            themovie.IncrementViewcount2(); //what it says on the tin, this is how we track views
+            themovie.IncrementViewcount(); //what it says on the tin, this is how we track views
 
             //get movie name from object and show in label
             LabelMessages.Text = themovie.ToString();
