@@ -22,6 +22,11 @@ namespace _4thHandin
             
         }
 
+        protected string DevInfo()
+        {
+            return "CXI";
+        }
+
         protected void ButtonSearch_Click(object sender, EventArgs e)
         {
             FourthProjectLogic.SearchMovies(TextBoxSearch.Text);

@@ -74,15 +74,17 @@ namespace _4thHandin
                 HttpContext.Current.Response.Redirect("~/search/?queryName=" + searchterm);
         }
 
+
+        // https://www.freeformatter.com/xsl-transformer.html <- use this for testing
         public static void CheckCommercials()
         {
             // do the xslt transformation on the commercials.xml only if we havent done so, or if we deleted it to force a refresh
-            if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml")))
+            if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")))
             {
                 string sourcefile = HttpContext.Current.Server.MapPath("xml/commercials.xml");
-                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsXSLT - Attributes.xslt");
+                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsImport.xslt");
 
-                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
+                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
 
                 FileStream fs = new FileStream(destinationfile, FileMode.Create);
                 XslCompiledTransform xct = new XslCompiledTransform();
@@ -91,7 +93,96 @@ namespace _4thHandin
                 fs.Close();
             }
         }
+        /*
+        private static bool Wegetsignal()
+        {
+            if (File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")) && File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed2.xml")))
+            {
+            return true;
+            }
+            else
+            {
+            return false;                   
+            }
+        }*/
 
+        public static void Fuckingluderpis() //temp xml
+        {
+            /*if (Wegetsignal())
+            {*/
+                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
+                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsCopy.xslt");
+
+                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedTemp.xml");
+
+                FileStream fs = new FileStream(destinationfile, FileMode.Create);
+                XslCompiledTransform xct = new XslCompiledTransform();
+                xct.Load(xslfile);
+                xct.Transform(sourcefile, null, fs);
+                fs.Close();
+           // }
+        }
+
+        //  LOAD THE XML, PICK A NUMBER, INCREMENT IT, RETURN ITS NUMBER - fuck it we'll do it on the page.
+        public static int CommercialStatTracker()    //take a gridview as arg and fuck with it? 
+        {
+            int randomcommercialToDisplayPosition = new Random().Next(0, 4); //should be a count but fuck xml right now
+
+            Fuckingluderpis();
+
+            // AWWWWRIIIIIGHT - it fuucking works now. 
+            
+            //except one of the commercials (web developers) does not get incremented/saved/whatever - it keeps being 0 even though it gets shown. the fuck? test its case in the tool?
+
+
+
+            //  if (Wegetsignal())
+            //  {
+             XsltArgumentList argsList = new XsltArgumentList();
+                argsList.AddParam("randomcommercialToDisplayPosition", "", randomcommercialToDisplayPosition);
+
+                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedTemp.xml"); 
+                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsIncrementer.xslt");
+
+                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
+
+                //XmlDataDocument xdoc = xmldata.
+
+                FileStream fs = new FileStream(destinationfile, FileMode.Create);
+                XslCompiledTransform xct = new XslCompiledTransform();
+                xct.Load(xslfile);
+                xct.Transform(sourcefile, argsList, fs);
+                fs.Close();
+                
+          //  }
+            return randomcommercialToDisplayPosition;
+        }
+
+
+        /*
+        public static System.Web.UI.WebControls.GridView randomCommercialGridView(System.Web.UI.WebControls.GridView gridView)    //take a gridview as arg and fuck with it? 
+        {
+            int randomcommercialToDisplayPosition = new Random().Next(0, gridView.Rows.Count);
+
+            // load the current transformed commercials & randomly pick one
+            if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")))
+            {
+                DataSet xmldata = new DataSet();
+                xmldata.ReadXml(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml"));
+
+                //XmlDataDocument xmlDatadoc = new XmlDataDocument(xmldata);
+                //xmlDatadoc.
+
+                gridView.DataSource = xmldata;
+                gridView.DataBind();
+            
+                // FourthProjectLogic.CheckCommercials();
+                gridView.Rows[randomcommercialToDisplayPosition].Style.Add("display", "block");
+               
+            }
+            return gridView;
+        }
+             */        
         /* xsltargumetnlist example, for viewcount */
         /*
         public static void TrackCommercialViews(int randomcommercialToDisplayPosition)

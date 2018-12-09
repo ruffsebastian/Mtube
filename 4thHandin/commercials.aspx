@@ -14,14 +14,8 @@
             commercials via dataset
             <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="True">
             </asp:GridView>
-
-
-
-               
-            
-            
-                                 
-        </div>
+                                
+           </div>
     </div>
 
 </asp:Content>

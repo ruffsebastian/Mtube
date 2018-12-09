@@ -31,6 +31,7 @@
         <br />
         <asp:Label Text="dummysearch" ID="doyouhavefrozen" runat="server" ></asp:Label>
         <asp:Label Text="dummysearch" ID="doyouhave2012" runat="server" ></asp:Label>
+        <asp:GridView ID="GridViewCommercial" AutoGenerateColumns="True"  runat="server"></asp:GridView>
     </div>
 </asp:Content>
 

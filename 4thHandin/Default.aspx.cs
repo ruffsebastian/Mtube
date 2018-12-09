@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -19,6 +20,38 @@ namespace _4thHandin
             //set datasource - alternative to designer setup
             Repeater1.DataSource = FourthProjectLogic.Movie.MovieTableAdapter.MoviesTop10();
             Repeater1.DataBind();
+
+
+
+                // make sure we have the transformed xml, if not create it
+                FourthProjectLogic.CheckCommercials();
+
+                
+
+            // run the logic for commercial stat tracking - reading and modifying the xml to increment viewcount for the random commercial and passing the commercials id/rowindex/"position"
+            int randomcommercialToDisplayPosition = FourthProjectLogic.CommercialStatTracker();
+
+            doyouhave2012.Text = randomcommercialToDisplayPosition.ToString();
+
+
+            // load the xml for display 
+            DataSet xmldata = new DataSet();
+                xmldata.ReadXml(MapPath("~/xml/commercialsTransformed.xml"));
+                GridViewCommercial.DataSource = xmldata;
+                GridViewCommercial.DataBind();
+
+                // loop trough the commercials and hide those that did not get picked for display
+                foreach (GridViewRow row in GridViewCommercial.Rows)
+                {
+                    if (row.RowIndex != randomcommercialToDisplayPosition)
+                    {
+                        row.Style.Add("display", "none");
+                    }
+                }
+
+           
+
+
         }
 
         protected void ButtonSearch_Click(object sender, EventArgs e)

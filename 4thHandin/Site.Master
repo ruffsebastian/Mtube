@@ -13,9 +13,9 @@
     </asp:PlaceHolder>
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
-    <webopt:bundlereference runat="server" path="~/Content/42/css" />
- <!--
      <webopt:bundlereference runat="server" path="~/Content/69b/css" /> 
+ <!--
+    <webopt:bundlereference runat="server" path="~/Content/42/css" />
      -->
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -70,11 +70,11 @@
             <hr />
             <footer >
                 <center>
-                    <p><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></p>
+                    <p><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></p>     
             </center>
                 <center alt="Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CXI - ( ty for correction seb )">
                     <p style="font-size:2em"> 
-                        <br /><br /><br /> CXI</p>
+                        <br /><br /><br /> <asp:Label ID="DevLabel" runat="server" Text='<%# DevInfo() %>'></asp:Label></p>
                 </center>
             </footer>
         </div>
