@@ -12,11 +12,13 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            doyouhave2012.Text = FourthProjectLogic.Movie.GetTitleByIdDal(420);
-
             FourthProjectLogic.Movie testmovie = new FourthProjectLogic.Movie(420);
-
+            doyouhave2012.Text = testmovie.ToString();
             doyouhavefrozen.Text = "there are " + FourthProjectLogic.Movie.ListMoviesByGenre("Thriller").Count + " movies in the genre Thriller";
+
+            //set datasource - alternative to designer setup
+            Repeater1.DataSource = FourthProjectLogic.Movie.MovieTableAdapter.MoviesTop10();
+            Repeater1.DataBind();
         }
 
         protected void ButtonSearch_Click(object sender, EventArgs e)

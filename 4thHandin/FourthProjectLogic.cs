@@ -47,11 +47,6 @@ namespace _4thHandin
 
             }
 
-            internal static string NameAPI(int v)
-            {
-                throw new NotImplementedException();
-            }
-
             public static string GetPosterUrl(string title)
             {
                 string result = OmdbAPI.NameAPI(title);
@@ -173,13 +168,7 @@ namespace _4thHandin
                 MovieTableAdapter.Update(this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
             }
 
-            public static List<Movie> ListMoviesByGenre(string Genre)  
-            {
-                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByGenre(Genre);   // this shit right here... 
-                return MovieListLoader(movieDBListRows);
-            }
-
-            public static List<Movie> MovieListLoader(DataAccessLayer.MovieDBListDataTable movieDBListRows)
+            private static List<Movie> MovieListLoader(DataAccessLayer.MovieDBListDataTable movieDBListRows)
             {
                 var movieList = new List<Movie>();
 
@@ -197,92 +186,24 @@ namespace _4thHandin
                 return movieList;
             }
 
-            // fuck everything below here
-
-            /* below method is a bit of a marrige of new and old - at the moment im only using the byid case and only want one result. should make a replacement that uses stored procedures like IncrementViewcount  */
-            /* Point being: THIS METHODS CODE IS PRETTY STUPID, DONT IMITATE */
-            public static List<Movie> ListMovies(string how, string what)
+            public static List<Movie> ListMoviesByGenre(string Genre)  
             {
-                string mycommandtext = "";
-                switch (how)
-                {
-                    case "byid":
-                        mycommandtext = "SELECT * FROM MovieDBList WHERE id = '" + what + "'";  //make distinct title + year
-                        break;
-                    case "category":
-                        mycommandtext = "SELECT * FROM MovieDBList WHERE category = '" + what + "'";
-                        break;
-                    case "year": //why not?
-                        mycommandtext = "SELECT * FROM MovieDBList WHERE year = '" + what + "'";  //make distinct title + year
-                        break;
-                    case "top10":
-                        mycommandtext = "SELECT TOP (10) * FROM MovieDBList ORDER BY ViewCount DESC, Year DESC";  //make distinct title + year
-                        break;
-                }
-                var movieList = new List<Movie>();
-                using (SqlConnection cn = new SqlConnection
-                { ConnectionString = FourthProjectLogic.ConnStr })
-                {
-                    using (SqlCommand cmd = new SqlCommand
-                    { Connection = cn, CommandText = mycommandtext })
-                    {
-                        cn.Open();
-                        var Reader = cmd.ExecuteReader();
-                        if (Reader.HasRows)
-                        {
-                            while (Reader.Read())              //This part is solid enough though, here is where we load our results from the db reader into Movie objects and add each of them to the list of movies from line 78
-                            {
-                                int id = Reader.GetFieldValue<int>(0);
-                                string title = Reader.GetString(Reader.GetOrdinal("title"));
-                                string genre = Reader.GetString(Reader.GetOrdinal("genre"));
-                                int year = Reader.GetFieldValue<int>(3); //Reader.GetOrdinal("year").ToString();
-                                int viewcount = Reader.GetFieldValue<int>(4); //Reader.GetOrdinal("viewcount").ToString();
-                                string posterpath = Reader.GetString(Reader.GetOrdinal("posterpath"));
-                                Movie readmovie = new Movie(id, title, genre, year, viewcount, posterpath);  //for some reason i found it simpler to just deal with the ints like this, reader.get* got me confused.... might just be brainfarting---- probably certainly
-                                movieList.Add(readmovie); //readmovie as in the movie that was read, not an order... hm, these comments might need some coffe.
-                            }
-                        }
-                        Reader.Close();
-                    }
-                }
-                return movieList;
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByGenre(Genre);   // this shit right here... 
+                return MovieListLoader(movieDBListRows);
+            }                        
+
+            public static List<Movie> ListMoviesByTitle(string Title)
+            {
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByTitle(Title);
+                return MovieListLoader(movieDBListRows);
             }
 
-
-            public static List<Movie> ListMoviesCateogry(string genre)
+            public static List<Movie> ListMoviesTop10()
             {
-
-                /* wait why am i opening connections, cant the dataset/dataaccesslayer.xsd/tableadapters do this for me?
-
-                NorthwindDataSetTableAdapters.RegionTableAdapter regionTableAdapter =
-    new NorthwindDataSetTableAdapters.RegionTableAdapter();
-
-                regionTableAdapter.Insert(5, "NorthWestern");
-                https://docs.microsoft.com/en-us/visualstudio/data-tools/directly-access-the-database-with-a-tableadapter?view=vs-2017
-                https://docs.microsoft.com/en-us/visualstudio/data-tools/fill-datasets-by-using-tableadapters?view=vs-2017
-                 */
-
-
-
-                DataAccessLayer.MovieDBListDataTable dt = new DataAccessLayer.MovieDBListDataTable();
-                
-                DataAccessLayerTableAdapters.MovieDBListTableAdapter tableAdapter = new DataAccessLayerTableAdapters.MovieDBListTableAdapter();
-
-                //dt.GetObjectData.
-               // dt. tableAdapter.GetDataByGenre(genre);
-                
-                //okay im too tired to make it work with a query but apparently we can go directly to the data like this, fuck me XD
-
-                var movieList = new List<Movie>();
-
-                return movieList;
-         /*       SqlConnection con = new SqlConnection(FourthProjectLogic.ConnStr);
-                SqlCommand cmd = new SqlCommand("", con) { CommandType = CommandType.StoredProcedure };  //by id from param from object 
-                cmd.Parameters.AddWithValue("@Genre", this.genre);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();*/
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.MoviesTop10();
+                return MovieListLoader(movieDBListRows);
             }
+
 
         }
      

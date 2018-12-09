@@ -13,11 +13,8 @@ namespace _4thHandin
         {
 
             SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
-            SqlDataSource2.ConnectionString = FourthProjectLogic.ConnStr;
             SqlDataSource5.ConnectionString = FourthProjectLogic.ConnStr;
-            //UpdateGridView();
-            Panel1.Visible = true;
-            Panel2.Visible = true;
+
 
            /* foreach (RepeaterItem item in Repeater1.Items)
             {
@@ -33,8 +30,7 @@ namespace _4thHandin
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Panel1.Visible = true;
-            Panel2.Visible = true;
+
         }
     }
 }
