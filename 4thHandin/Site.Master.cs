@@ -12,7 +12,7 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Labelcurrentconman.Text = ConMan.ConnStr;  //tell the dev what connection he is using
+            //Labelcurrentconman.Text = ConMan.ConnStr;  //tell the dev what connection he is using
             
             //Display a Chuck Norris joke via API about a random teacher
             WebClient client = new WebClient();
