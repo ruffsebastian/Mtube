@@ -11,21 +11,8 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
             SqlDataSource5.ConnectionString = FourthProjectLogic.ConnStr;
-
-
-           /* foreach (RepeaterItem item in Repeater1.Items)
-            {
-                if (item.ItemType ==   )
-                {
-                    var PosterPath = (Image)item.FindControl("PosterPath");
-
-                    //Do something with your checkbox...
-                    PosterPath.ImageUrl = "/Myfiles/default-img.jpg";
-                }
-            }*/
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)

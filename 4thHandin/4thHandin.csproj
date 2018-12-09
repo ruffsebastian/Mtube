@@ -105,7 +105,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="commercials.aspx" />
     <Content Include="Content\42\Site.css" />
     <Content Include="Content\69b\Site.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -186,13 +185,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="commercials.aspx.cs">
-      <DependentUpon>commercials.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="commercials.aspx.designer.cs">
-      <DependentUpon>commercials.aspx</DependentUpon>
-    </Compile>
     <Compile Include="DataAccessLayer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

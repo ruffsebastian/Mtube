@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Web;
@@ -11,9 +9,11 @@ using System.Xml.Xsl;
 
 namespace _4thHandin
 {
-    class FourthProjectLogic 
+    class FourthProjectLogic
     {
         public static string ConnStr = ConfigurationManager.ConnectionStrings["MovieDBListConnectionString"].ToString();
+
+        public static void SearchMovies(string searchterm) { HttpContext.Current.Response.Redirect("~/search/?queryName=" + searchterm); }
 
         public static string GetJokeFromAPI()
         {
@@ -25,13 +25,8 @@ namespace _4thHandin
             string[] separatingChars = { "\"" };
             string[] mysplit = reply.Split(separatingChars, System.StringSplitOptions.RemoveEmptyEntries);
 
-            if (mysplit[0] != "False")
-            {
-                return mysplit[11]; //i feel a bit dirty but hey, results are results right? [no they are not]
-            }
-            else {
-                return "i dont get it";
-            };
+            if (mysplit[0] != "False"){ return mysplit[11];}
+                                 else { return "i dont get it"; };
         }
 
         public class OmdbAPI
@@ -41,10 +36,8 @@ namespace _4thHandin
 
             public static string NameAPI(string name)
             {
-
                 string result = client.DownloadString("http://www.omdbapi.com/?apikey=" + OmdbApiToken + "&r=xml&t=" + name);
                 return result;
-
             }
 
             public static string GetPosterUrl(string title)
@@ -63,53 +56,37 @@ namespace _4thHandin
                     {
                         poster = node.SelectSingleNode("@poster").InnerText;
                     }
-
                 }
                 return poster;
             }
-
         }
 
-        public static void SearchMovies(string searchterm) {
-                HttpContext.Current.Response.Redirect("~/search/?queryName=" + searchterm);
-        }
-
-
-        // https://www.freeformatter.com/xsl-transformer.html <- use this for testing
-        public static void CheckCommercials()
+        // make sure we have the transformed xml, if not then create it
+        public class Commercials
         {
-            // do the xslt transformation on the commercials.xml only if we havent done so, or if we deleted it to force a refresh
-            if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")))
-            {
-                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercials.xml");
-                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsImport.xslt");
+            // https://www.freeformatter.com/xsl-transformer.html Nice xslt testing       
 
-                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
-
-                FileStream fs = new FileStream(destinationfile, FileMode.Create);
-                XslCompiledTransform xct = new XslCompiledTransform();
-                xct.Load(xslfile);
-                xct.Transform(sourcefile, null, fs);
-                fs.Close();
-            }
-        }
-        /*
-        private static bool Wegetsignal()
-        {
-            if (File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")) && File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed2.xml")))
+            public static void CheckTransform()
             {
-            return true;
-            }
-            else
-            {
-            return false;                   
-            }
-        }*/
+                // do the xslt transformation on the commercials.xml only if we havent done so, or if we deleted it to force a refresh
+                if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")))  //might wanna expand this to check if we have rows in commercialsTransformed to make sure we have GOOD xml, not just files.
+                {
+                    string sourcefile = HttpContext.Current.Server.MapPath("xml/commercials.xml");
+                    string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsImport.xslt");
 
-        public static void Fuckingluderpis() //temp xml
-        {
-            /*if (Wegetsignal())
-            {*/
+                    string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
+
+                    FileStream fs = new FileStream(destinationfile, FileMode.Create);
+                    XslCompiledTransform xct = new XslCompiledTransform();
+                    xct.Load(xslfile);
+
+                    xct.Transform(sourcefile, null, fs);
+                    fs.Close();
+                }
+            }
+
+            public static void MakeTempXml()
+            {
                 string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
                 string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsCopy.xslt");
 
@@ -120,93 +97,37 @@ namespace _4thHandin
                 xct.Load(xslfile);
                 xct.Transform(sourcefile, null, fs);
                 fs.Close();
-           // }
-        }
+            }
 
-        //  LOAD THE XML, PICK A NUMBER, INCREMENT IT, RETURN ITS NUMBER - fuck it we'll do it on the page.
-        public static int CommercialStatTracker()    //take a gridview as arg and fuck with it? 
-        {
-            int randomcommercialToDisplayPosition = new Random().Next(0, 4); //should be a count but fuck xml right now
+            public static int StatTracker()
+            {
+                CheckTransform();
 
-            Fuckingluderpis();
+                int randomcommercialToDisplayPosition = new Random().Next(0, 4); //should be a count, otherwise new ones won't be seen
 
-            // AWWWWRIIIIIGHT - it fuucking works now. 
-            
-            //except one of the commercials (web developers) does not get incremented/saved/whatever - it keeps being 0 even though it gets shown. the fuck? test its case in the tool?
-
-
-
-            //  if (Wegetsignal())
-            //  {
-             XsltArgumentList argsList = new XsltArgumentList();
+                XsltArgumentList argsList = new XsltArgumentList();
                 argsList.AddParam("randomcommercialToDisplayPosition", "", randomcommercialToDisplayPosition);
 
-                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedTemp.xml"); 
+                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedTemp.xml");
                 string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsIncrementer.xslt");
-
                 string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
-
-                //XmlDataDocument xdoc = xmldata.
 
                 FileStream fs = new FileStream(destinationfile, FileMode.Create);
                 XslCompiledTransform xct = new XslCompiledTransform();
                 xct.Load(xslfile);
                 xct.Transform(sourcefile, argsList, fs);
                 fs.Close();
-                
-          //  }
-            return randomcommercialToDisplayPosition;
-        }
 
+                MakeTempXml();  //keep the temp file updated... updatetemp would probably be a better name 
 
-        /*
-        public static System.Web.UI.WebControls.GridView randomCommercialGridView(System.Web.UI.WebControls.GridView gridView)    //take a gridview as arg and fuck with it? 
-        {
-            int randomcommercialToDisplayPosition = new Random().Next(0, gridView.Rows.Count);
-
-            // load the current transformed commercials & randomly pick one
-            if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")))
-            {
-                DataSet xmldata = new DataSet();
-                xmldata.ReadXml(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml"));
-
-                //XmlDataDocument xmlDatadoc = new XmlDataDocument(xmldata);
-                //xmlDatadoc.
-
-                gridView.DataSource = xmldata;
-                gridView.DataBind();
-            
-                // FourthProjectLogic.CheckCommercials();
-                gridView.Rows[randomcommercialToDisplayPosition].Style.Add("display", "block");
-               
+                return randomcommercialToDisplayPosition;
             }
-            return gridView;
         }
-             */        
-        /* xsltargumetnlist example, for viewcount */
-        /*
-        public static void TrackCommercialViews(int randomcommercialToDisplayPosition)
-        {
-            XsltArgumentList argsList = new XsltArgumentList();
-            argsList.AddParam("position", "", randomcommercialToDisplayPosition);
 
-            string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
-            string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsXSLT - Increment.xslt");
-
-            string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedAttr.xml");
-
-            FileStream fs = new FileStream(destinationfile, FileMode.Create);
-            XslCompiledTransform xct = new XslCompiledTransform();
-            xct.Load(xslfile);
-            xct.Transform(sourcefile, argsList, fs);
-            fs.Close();
-        }
-        */
-
-        public class Movie  
+        public class Movie
         {
             public static DataAccessLayerTableAdapters.MovieDBListTableAdapter MovieTableAdapter = new DataAccessLayerTableAdapters.MovieDBListTableAdapter();
-            
+
             public int id;
             public string title;
             public string genre;
@@ -222,11 +143,8 @@ namespace _4thHandin
                 this.viewcount = viewcount;
                 this.posterpath = posterpath;
             }
-            //constructor via DataSet - essentially the same as searching for movie by id but more efficient code-wise... 
-            //might be a bit cheeky tho, certainly dont wanna mass-create objects like this(since it would probably be calling the db for every object)
-            //its a bit annoying having to instantiate a movie to get the value too kinda... although having the object is very handy
-            //usage example:  FourthProjectLogic.Movie themovie = new FourthProjectLogic.Movie(queryID);  and then something like textbox.text = themovie.title;
-            public Movie (int ID)                                     
+            
+            public Movie(int ID) //constructor via DataSet - essentially the same as searching for movie by id but more sexier
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
 
@@ -238,6 +156,18 @@ namespace _4thHandin
                 this.posterpath = movieDBListRows[0]["posterpath"].ToString();
             }
 
+            public override string ToString()
+            {
+                string outputtet = "That Movie " + this.title + ", i think it was made in " + this.year + " or so... was one of those " + this.genre;
+                outputtet += " flicks... folks round here have taken a shine to it " + this.viewcount + " times. you can find its poster at ye olde uniform resource locator " + this.posterpath;
+                return outputtet;
+            }
+
+            public void IncrementViewcount()
+            {
+                MovieTableAdapter.Update(this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
+            }
+
             //early test of MovieDBListDataTable capabilities, only gets the title instead of creating an object.
             //usage example:  textbox.text = FourthProjectLogic.GetTitleByIdDal(queryID);
             public static String GetTitleByIdDal(int ID)
@@ -245,18 +175,6 @@ namespace _4thHandin
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
 
                 return movieDBListRows[0][1].ToString();
-            }
-
-            public override string ToString()
-            {
-                string outputtet = "That Movie " + this.title + ", i think it was made in " + this.year + " or so... was one of those " + this.genre;
-                       outputtet += " flicks... folks round here have taken a shine to it " + this.viewcount + " times. you can find its poster at ye olde uniform resource locator " + this.posterpath;
-                return outputtet;
-            }            
-
-            public void IncrementViewcount()
-            {
-                MovieTableAdapter.Update(this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
             }
 
             private static List<Movie> MovieListLoader(DataAccessLayer.MovieDBListDataTable movieDBListRows)
@@ -277,11 +195,11 @@ namespace _4thHandin
                 return movieList;
             }
 
-            public static List<Movie> ListMoviesByGenre(string Genre)  
+            public static List<Movie> ListMoviesByGenre(string Genre)
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByGenre(Genre);   // this shit right here... 
                 return MovieListLoader(movieDBListRows);
-            }                        
+            }
 
             public static List<Movie> ListMoviesByTitle(string Title)
             {
@@ -294,9 +212,6 @@ namespace _4thHandin
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.MoviesTop10();
                 return MovieListLoader(movieDBListRows);
             }
-
-
         }
-     
     }
 }
