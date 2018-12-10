@@ -32,7 +32,7 @@ namespace _4thHandin
             LabelMessages.Text = themovie.ToString();
             LabelMessages.Visible = true;
             
-            string result = FourthProjectLogic.OmdbAPI.NameAPI(themovie.title); //add year to make sure we get correct results?
+            string result = FourthProjectLogic.OmdbAPI.NameAPI(themovie.title,themovie.year); //add year to make sure we get correct results?
 
             File.WriteAllText(Server.MapPath("~/MyFiles/Latestresult.xml"), result);
             XmlDocument doc = new XmlDocument();

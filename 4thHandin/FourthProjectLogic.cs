@@ -34,15 +34,15 @@ namespace _4thHandin
             private static WebClient client = new WebClient();
             private static string OmdbApiToken = "a4036190";
 
-            public static string NameAPI(string name)
+            public static string NameAPI(string name,int year)
             {
-                string result = client.DownloadString("http://www.omdbapi.com/?apikey=" + OmdbApiToken + "&r=xml&t=" + name);
+                string result = client.DownloadString("http://www.omdbapi.com/?apikey=" + OmdbApiToken + "&r=xml&t=" + name+"&y="+year);
                 return result;
             }
 
-            public static string GetPosterUrl(string title)
+            public static string GetPosterUrl(string title,int year)
             {
-                string result = OmdbAPI.NameAPI(title);
+                string result = OmdbAPI.NameAPI(title,year);
                 string poster = "failed to get poster";
 
                 File.WriteAllText(HttpContext.Current.Server.MapPath("~/MyFiles/Latestresult.xml"), result);
