@@ -62,12 +62,13 @@ namespace _4thHandin
                 LabelResultActors.Text = "Actors: " + nodelist[0].SelectSingleNode("@actors").InnerText;
                 LabelResultDescription.Text = "Description: " + nodelist[0].SelectSingleNode("@plot").InnerText;
                 LabelResultChildRating.Text = "Child Rating: " + nodelist[0].SelectSingleNode("@rated").InnerText;
-
+                LabelMessages.Visible = false;
                 //resultspanel.Visible = true;
             }
             else
             {
                 //resultspanel.Visible = true;
+                LabelMessages.Visible = true;
                 LabelResultTitle.Visible = false;
                 LabelResultRating.Visible = false;
                 LabelResultYear.Visible = false;

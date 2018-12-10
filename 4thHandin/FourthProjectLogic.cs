@@ -156,16 +156,16 @@ namespace _4thHandin
                 this.posterpath = movieDBListRows[0]["posterpath"].ToString();
             }
 
-            public override string ToString()
+       /*     public override string ToString()
             {
                 string outputtet = "That Movie " + this.title + ", i think it was made in " + this.year + " or so... was one of those " + this.genre;
                 outputtet += " flicks... folks round here have taken a shine to it " + this.viewcount + " times. you can find its poster at ye olde uniform resource locator " + this.posterpath;
                 return outputtet;
-            }
+            }*/
 
             public void IncrementViewcount()
             {
-                MovieTableAdapter.Update(this.id, this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id);
+                MovieTableAdapter.Update( this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
             }
 
             //early test of MovieDBListDataTable capabilities, only gets the title instead of creating an object.

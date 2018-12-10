@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-md-8 col-sm-12" style="padding-top:10px;padding-bottom:40px;">
-                <asp:Label ID="LabelMessages" runat="server" Text="Result"></asp:Label>
+               <asp:Label ID="LabelMessages" runat="server" Text="Result"></asp:Label>
                 <br />
                 <asp:Label ID="LabelResultTitle" CssClass="h1" runat="server" Text="Result"></asp:Label>
                 <br />
