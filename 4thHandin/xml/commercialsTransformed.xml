@@ -4,24 +4,24 @@
     <company>Yensid Tlaw</company>
     <webpage>www.myfantasy.com</webpage>
     <logo>logo1.jpg</logo>
-    <viewcount>9</viewcount>
+    <viewcount>11</viewcount>
   </commercial>
   <commercial>
     <company>Tinycomp</company>
     <webpage>www.myhugo.com</webpage>
     <logo>logo2.jpg</logo>
-    <viewcount>15</viewcount>
+    <viewcount>17</viewcount>
   </commercial>
   <commercial>
     <company>Cartoons</company>
     <webpage>www.lotsofcartoons.com</webpage>
     <logo>logo3.jpg</logo>
-    <viewcount>9</viewcount>
+    <viewcount>13</viewcount>
   </commercial>
   <commercial>
     <company>Web Developers</company>
     <webpage>www.superstudents.com</webpage>
     <logo>logo4.jpg</logo>
-    <viewcount>8</viewcount>
+    <viewcount>11</viewcount>
   </commercial>
 </commercials>

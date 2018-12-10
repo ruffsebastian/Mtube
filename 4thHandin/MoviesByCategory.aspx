@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MoviesByCategory.aspx.cs" Inherits="_4thHandin.MoviesByCategory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-            Search movie
-            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Genre" DataValueField="Genre" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-            </asp:DropDownList>
             <br />
+        <div class="col-md-12">
+            <asp:DropDownList CssClass="btn btn-default dropdown-toggle" ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Genre" DataValueField="Genre" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            </asp:DropDownList>
             
+          </div>  
+        <br />
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT DISTINCT [Genre] FROM [MovieDBList]"></asp:SqlDataSource>
             
             <br />
@@ -19,7 +21,7 @@
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource5">
                 <ItemTemplate>
                          
-
+                    <div class="col-md-5th-1 col-sm-4">
                      <div class="card card-1">
                          <a href='SingleView.aspx?queryID=<%# Eval ("ID")%>'>
                          <div class="gradient"></div>
@@ -32,8 +34,46 @@
                    <asp:Label ID="TitleLabel" CssClass="text-middle" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
                             </span>
                         </a>
-                         </div>                       
+                         </div> 
+                       </div>
                 </ItemTemplate>
             </asp:Repeater>
+
+        
+           <!-- <asp:Panel ID="Panel1" runat="server">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" Width="351px" AllowPaging="True">
+                    <Columns>
+                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                        <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
+                        <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
+                        <asp:ImageField DataImageUrlField="PosterPath" HeaderText="Poster">
+                        </asp:ImageField>
+                        <asp:TemplateField HeaderText="Link" ></asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </asp:Panel>-->
+
+           <!-- <asp:Panel ID="Panel2" runat="server">
+                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" Width="348px">
+                    <Columns>
+                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                        <asp:BoundField DataField="Genre" HeaderText="Genre" SortExpression="Genre" />
+                        <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
+                    </Columns>
+                </asp:GridView>
+            </asp:Panel> -->
+
+
+
+           <!-- <asp:SqlDataSource ID="SqlDataSource2" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Genre] = @Genre)">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="DropDownList1" Name="Genre" PropertyName="SelectedValue" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource> -->
+
+
+
+
+
         </div>
 </asp:Content>

@@ -20,7 +20,7 @@ namespace _4thHandin
                 Response.Redirect("~/");
             }
                    
-            resultspanel.Visible = false;
+            //resultspanel.Visible = false;
 
             int queryID = Int32.Parse(Request.QueryString["queryID"]);
 
@@ -63,11 +63,11 @@ namespace _4thHandin
                 LabelResultDescription.Text = "Description: " + nodelist[0].SelectSingleNode("@plot").InnerText;
                 LabelResultChildRating.Text = "Child Rating: " + nodelist[0].SelectSingleNode("@rated").InnerText;
 
-                resultspanel.Visible = true;
+                //resultspanel.Visible = true;
             }
             else
             {
-                resultspanel.Visible = true;
+                //resultspanel.Visible = true;
                 LabelResultTitle.Visible = false;
                 LabelResultRating.Visible = false;
                 LabelResultYear.Visible = false;

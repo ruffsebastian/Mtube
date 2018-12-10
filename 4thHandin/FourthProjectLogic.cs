@@ -138,7 +138,7 @@ namespace _4thHandin
             {
                 this.id = id;
                 this.title = title;
-                this.genre = title;
+                this.genre = genre;
                 this.year = year;
                 this.viewcount = viewcount;
                 this.posterpath = posterpath;
@@ -165,7 +165,7 @@ namespace _4thHandin
 
             public void IncrementViewcount()
             {
-                MovieTableAdapter.Update(this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
+                MovieTableAdapter.Update(this.id, this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id);
             }
 
             //early test of MovieDBListDataTable capabilities, only gets the title instead of creating an object.
