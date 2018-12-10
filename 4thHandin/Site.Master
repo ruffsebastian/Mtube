@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %>- My ASP.NET Application</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -54,26 +54,23 @@
                         <img src="/img/mtube.png" alt="Mtube" height="50" style="margin-top: -15px;" /></a>
                      <div class="mobile-show">
                         <div style="margin-top: 8px; margin-left: 15px; float: left;">
-                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control top-search-input"></asp:TextBox>
+                           <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control top-search-input"></asp:TextBox>
                         </div>
 
                         <div style="margin-top: 8px; margin-left: 0px; float: left;">
-                            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="ButtonSearch_Click" CssClass="btn btn-primary-c btn-outline-secondary top-search-button" />
-                        </div>
+                            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" CssClass="btn btn-primary-c btn-outline-secondary top-search-button" />
+                       </div>
                     </div>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/MoviesByCategory">Browse</a></li>
-                        <li class="navsearch">
-                           <asp:TextBox ID="TextBoxSearch" runat="server"></asp:TextBox><asp:Button ID="ButtonSearch" runat="server" Text="Search" OnClick="ButtonSearch_Click" />
-                        </li>
+                        <li><a runat="server" href="~/MoviesByCategory">Browse by Category</a></li>
                     </ul>
                     <div class="mobile-hide">
                         <div style="margin-top: 8px; margin-left: 0px; float: right; ">
-                            <asp:Button ID="Button2" runat="server" Text="Search" OnClick="ButtonSearch_Click" CssClass="btn btn-primary-c btn-outline-secondary top-search-button" />
-                        </div>
+                      <asp:Button ID="Button2" runat="server" Text="Search" OnClick="Button2_Click" CssClass="btn btn-primary-c btn-outline-secondary top-search-button" />
+                     </div>
 
                         <div style="margin-top: 8px; float: right;">
                             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control top-search-input"></asp:TextBox>

@@ -27,9 +27,17 @@ namespace _4thHandin
             return "CXI";
         }
 
-        protected void ButtonSearch_Click(object sender, EventArgs e)
+        protected void Button2_Click(object sender, EventArgs e)
         {
-            FourthProjectLogic.SearchMovies(TextBoxSearch.Text);
+            FourthProjectLogic.SearchMovies(TextBox2.Text);
         }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            FourthProjectLogic.SearchMovies(TextBox1.Text);
+        }
+
+
+
+
     }
 }

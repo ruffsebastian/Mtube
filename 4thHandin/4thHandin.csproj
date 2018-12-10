@@ -139,6 +139,7 @@
     <Content Include="DataAccessLayer.xsc">
       <DependentUpon>DataAccessLayer.xsd</DependentUpon>
     </Content>
+    <Content Include="xml\commercialsTransformedTemp.xml" />
     <None Include="DataAccessLayer.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

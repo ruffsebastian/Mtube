@@ -15,7 +15,7 @@
             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control sizing-addon1"></asp:TextBox>
             <span class="input-group-btn">
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="ButtonSearch_Click" CssClass="btn btn-primary-c btn-outline-secondary top-search-button" />
-            </span>
+         </span>
         </div><!-- /input-group -->
     </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->

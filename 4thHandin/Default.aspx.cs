@@ -46,15 +46,16 @@ namespace _4thHandin
                 GridViewCommercial.DataSource = xmldata;
                 GridViewCommercial.DataBind();
 
-                // loop trough the commercials and hide those that did not get picked for display
-                foreach (GridViewRow row in GridViewCommercial.Rows)
+            // loop trough the commercials and hide those that did not get picked for display
+            foreach (GridViewRow row in GridViewCommercial.Rows)
                 {
                     if (row.RowIndex != randomcommercialToDisplayPosition)
                     {
                         row.Style.Add("display", "none");
                     }
                 }
-            
+
+
         }
 
         protected void ButtonSearch_Click(object sender, EventArgs e)

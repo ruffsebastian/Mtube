@@ -21,7 +21,7 @@ namespace _4thHandin
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
-
+            this.GridViewDisplaySearch.Visible = false;
             if (GridViewDisplaySearch.Rows.Count == 1)
             {
                 Response.Redirect("~/SingleView/?queryID=" + GridViewDisplaySearch.Rows[0].Cells[0].Text);
