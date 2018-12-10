@@ -116,6 +116,10 @@ textarea {
     .mobile-show {
         display: block;
     }
+    .commercial-box {
+        padding: 0px !important;
+        margin-top: 20px;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -137,6 +141,10 @@ textarea {
     }
     .mobile-show {
         display: block;
+    }
+    .commercial-box {
+        padding: 0px !important;
+        margin-top:20px;
     }
 }
 
@@ -716,3 +724,52 @@ h1 {
     .btn-primary-c:hover {
         background-color: #323E49 !important;
     }
+
+.h1 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #111;
+}
+
+.single-view-img-center {
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    height: auto !important;
+    max-height: 300px;
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent), to(rgba(250, 250, 250, 0.1)));
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.radius {
+    border-radius:5px;
+}
+
+.commercial-box {
+    background-color: #49B3CB;
+    width: 100%;
+    height: 430px;
+    float: right;
+}
+
+
+.image-poster-box {
+    margin-bottom: 50px;
+    padding: 30px;
+}
+
+.button-box {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.container-spacing {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card-single-view {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}

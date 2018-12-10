@@ -52,7 +52,7 @@
                         <span class="icon-bar "></span>
                     </button>
                     <a class="navbar-brand mobile-hide" runat="server" href="~/">
-                        <img src="img/mtube.png" alt="Mtube" height="50" style="margin-top: -15px;" /></a>
+                        <img src="/img/mtube.png" alt="Mtube" height="50" style="margin-top: -15px;" /></a>
                      <div class="mobile-show">
                         <div style="margin-top: 8px; margin-left: 15px; float: left;">
                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control top-search-input"></asp:TextBox>

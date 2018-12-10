@@ -80,6 +80,7 @@ namespace _4thHandin
                 LabelResultActors.Visible = true;
                 LabelResultDescription.Visible = true;
                 LabelResultChildRating.Visible = true;
+                LabelMessages.Visible = false;
 
             }
             else
