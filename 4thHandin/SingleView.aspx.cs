@@ -81,6 +81,29 @@ namespace _4thHandin
                 ImagePoster.ImageUrl = "/Myfiles/default-img.jpg";
                 LabelResultTitle.Text = "no Results";
             }
+
+
+            // COMMERCIAL          
+            // run the logic for commercial stat tracking - reading and modifying the xml to increment viewcount for the random commercial and passing the commercials id/rowindex/"position"
+
+            int randomcommercialToDisplayPosition = FourthProjectLogic.Commercials.StatTracker();
+
+            // load the xml for display 
+
+
+            DataSet ds = new DataSet();
+            ds.ReadXml(MapPath("/xml/commercialsTransformedTemp.xml"));
+            rpMyRepeater.DataSource = ds;
+            rpMyRepeater.DataBind();
+
+
+            foreach (RepeaterItem item in rpMyRepeater.Items)
+            {
+                if (item.ItemIndex != randomcommercialToDisplayPosition)
+                {
+                    item.Visible = false;
+                }
+            }
         }
     }
 }

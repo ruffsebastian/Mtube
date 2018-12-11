@@ -69,12 +69,12 @@ namespace _4thHandin
             public static void CheckTransform()
             {
                 // do the xslt transformation on the commercials.xml only if we havent done so, or if we deleted it to force a refresh
-                if (!File.Exists(HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml")))  //might wanna expand this to check if we have rows in commercialsTransformed to make sure we have GOOD xml, not just files.
+                if (!File.Exists(HttpContext.Current.Server.MapPath("/xml/commercialsTransformed.xml")))  //might wanna expand this to check if we have rows in commercialsTransformed to make sure we have GOOD xml, not just files.
                 {
-                    string sourcefile = HttpContext.Current.Server.MapPath("xml/commercials.xml");
-                    string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsImport.xslt");
+                    string sourcefile = HttpContext.Current.Server.MapPath("/xml/commercials.xml");
+                    string xslfile = HttpContext.Current.Server.MapPath("/xml/commercialsImport.xslt");
 
-                    string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
+                    string destinationfile = HttpContext.Current.Server.MapPath("/xml/commercialsTransformed.xml");
 
                     FileStream fs = new FileStream(destinationfile, FileMode.Create);
                     XslCompiledTransform xct = new XslCompiledTransform();
@@ -87,10 +87,10 @@ namespace _4thHandin
 
             public static void MakeTempXml()
             {
-                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
-                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsCopy.xslt");
+                string sourcefile = HttpContext.Current.Server.MapPath("/xml/commercialsTransformed.xml");
+                string xslfile = HttpContext.Current.Server.MapPath("/xml/commercialsCopy.xslt");
 
-                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedTemp.xml");
+                string destinationfile = HttpContext.Current.Server.MapPath("/xml/commercialsTransformedTemp.xml");
 
                 FileStream fs = new FileStream(destinationfile, FileMode.Create);
                 XslCompiledTransform xct = new XslCompiledTransform();
@@ -108,9 +108,9 @@ namespace _4thHandin
                 XsltArgumentList argsList = new XsltArgumentList();
                 argsList.AddParam("randomcommercialToDisplayPosition", "", randomcommercialToDisplayPosition);
 
-                string sourcefile = HttpContext.Current.Server.MapPath("xml/commercialsTransformedTemp.xml");
-                string xslfile = HttpContext.Current.Server.MapPath("xml/commercialsIncrementer.xslt");
-                string destinationfile = HttpContext.Current.Server.MapPath("xml/commercialsTransformed.xml");
+                string sourcefile = HttpContext.Current.Server.MapPath("/xml/commercialsTransformedTemp.xml");
+                string xslfile = HttpContext.Current.Server.MapPath("/xml/commercialsIncrementer.xslt");
+                string destinationfile = HttpContext.Current.Server.MapPath("/xml/commercialsTransformed.xml");
 
                 FileStream fs = new FileStream(destinationfile, FileMode.Create);
                 XslCompiledTransform xct = new XslCompiledTransform();

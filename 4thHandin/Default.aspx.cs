@@ -36,25 +36,6 @@ namespace _4thHandin
             //Repeater1.DataBind();
 
 
-            // COMMERCIAL          
-            // run the logic for commercial stat tracking - reading and modifying the xml to increment viewcount for the random commercial and passing the commercials id/rowindex/"position"
-            int randomcommercialToDisplayPosition = FourthProjectLogic.Commercials.StatTracker();
-                       
-            // load the xml for display 
-            DataSet xmldata = new DataSet();
-                xmldata.ReadXml(MapPath("~/xml/commercialsTransformed.xml"));
-                GridViewCommercial.DataSource = xmldata;
-                GridViewCommercial.DataBind();
-
-            // loop trough the commercials and hide those that did not get picked for display
-            foreach (GridViewRow row in GridViewCommercial.Rows)
-                {
-                    if (row.RowIndex != randomcommercialToDisplayPosition)
-                    {
-                        row.Style.Add("display", "none");
-                    }
-                }
-
 
         }
 

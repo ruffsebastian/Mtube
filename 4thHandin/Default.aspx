@@ -51,7 +51,6 @@
               </div>
     </div>
     <div class="row">
-        <asp:GridView ID="GridViewCommercial" AutoGenerateColumns="True"  runat="server"></asp:GridView>
     </div>
 </asp:Content>
 
