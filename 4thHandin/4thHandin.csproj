@@ -126,7 +126,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Myfiles\default-img.jpg" />
     <Content Include="img\mask-title.png" />
-    <Content Include="MoviesByCategory.aspx" />
+    <Content Include="Browse.aspx" />
     <Content Include="Myfiles\Latestresult.xml" />
     <Content Include="Search.aspx" />
     <Content Include="GetImages.aspx" />
@@ -139,6 +139,8 @@
     <Content Include="DataAccessLayer.xsc">
       <DependentUpon>DataAccessLayer.xsd</DependentUpon>
     </Content>
+    <Content Include="xml\commercialsTransformed.xml" />
+    <Content Include="xml\commercialsTransformedTemp.xml" />
     <None Include="DataAccessLayer.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -200,12 +202,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MoviesByCategory.aspx.cs">
-      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
+    <Compile Include="Browse.aspx.cs">
+      <DependentUpon>Browse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MoviesByCategory.aspx.designer.cs">
-      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
+    <Compile Include="Browse.aspx.designer.cs">
+      <DependentUpon>Browse.aspx</DependentUpon>
     </Compile>
     <Compile Include="FourthProjectLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

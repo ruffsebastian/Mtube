@@ -18,19 +18,14 @@ namespace _4thHandin
             //redirect to home if there is no querystring
             if (string.IsNullOrWhiteSpace(Request.QueryString["queryID"])) {
                 Response.Redirect("~/");
-            }
-                   
-            //resultspanel.Visible = false;
+            }        
 
-            int queryID = Int32.Parse(Request.QueryString["queryID"]);
-
-            FourthProjectLogic.Movie themovie = new FourthProjectLogic.Movie(queryID); //get movie object via id, fetching db info for it
+            FourthProjectLogic.Movie themovie = new FourthProjectLogic.Movie(Int32.Parse(Request.QueryString["queryID"])); //get movie object via id, fetching db info for it
 
             themovie.IncrementViewcount(); //what it says on the tin, this is how we track views
 
-            //get movie name from object and show in label
-            LabelMessages.Text = themovie.ToString();
-            LabelMessages.Visible = true;
+            //get movie name from object and show in label - thats not the movies fucking name, how about asking me about shit instead of commenting methods out?
+            LabelMessages.Text = themovie.title;  // .ToString();
             
             string result = FourthProjectLogic.OmdbAPI.NameAPI(themovie.title,themovie.year); //add year to make sure we get correct results?
 
@@ -46,40 +41,49 @@ namespace _4thHandin
                     string poster = node.SelectSingleNode("@poster").InnerText;
                     if (poster == "N/A" || poster == "FAIL")
                     {
-
                         ImagePoster.ImageUrl = "/Myfiles/default-img.jpg";
                     }
                     else
                     {
-
-                    ImagePoster.ImageUrl = poster;
+                        ImagePoster.ImageUrl = poster;
                     }
                 }
-
                 LabelResultTitle.Text = "Title: " + nodelist[0].SelectSingleNode("@title").InnerText;
                 LabelResultRating.Text = "Rating: " + nodelist[0].SelectSingleNode("@imdbRating").InnerText;
                 LabelResultYear.Text = "Year: " + nodelist[0].SelectSingleNode("@year").InnerText;
                 LabelResultActors.Text = "Actors: " + nodelist[0].SelectSingleNode("@actors").InnerText;
                 LabelResultDescription.Text = "Description: " + nodelist[0].SelectSingleNode("@plot").InnerText;
                 LabelResultChildRating.Text = "Child Rating: " + nodelist[0].SelectSingleNode("@rated").InnerText;
-                LabelMessages.Visible = false;
-                //resultspanel.Visible = true;
+
+                MagicPanel.Visible = true;
             }
             else
             {
-                //resultspanel.Visible = true;
-                LabelMessages.Visible = true;
-                LabelResultTitle.Visible = false;
-                LabelResultRating.Visible = false;
-                LabelResultYear.Visible = false;
-                LabelResultActors.Visible = false;
-                LabelResultDescription.Visible = false;
-                LabelResultChildRating.Visible = false;
-
+                MagicPanel.Visible = false;
                 LabelMessages.Text = "Movie not found";
-                LabelMessages.Visible = true;
                 ImagePoster.ImageUrl = "/Myfiles/default-img.jpg";
                 LabelResultTitle.Text = "no Results";
+            }
+
+            //top 10
+            Repeater1.DataSource = FourthProjectLogic.Movie.MovieTableAdapter.MoviesTop10();
+            Repeater1.DataBind();
+
+            // COMMERCIAL          
+            // run the logic for commercial stat tracking - reading and modifying the xml to increment viewcount for the random commercial and passing the commercials id/rowindex/"position"
+            int randomcommercialToDisplayPosition = FourthProjectLogic.Commercials.StatTracker();
+
+            DataSet ds = new DataSet();
+            ds.ReadXml(MapPath("/xml/commercialsTransformed.xml"));
+            rpMyRepeater.DataSource = ds;
+            rpMyRepeater.DataBind();
+
+            foreach (RepeaterItem item in rpMyRepeater.Items)
+            {
+                if (item.ItemIndex != randomcommercialToDisplayPosition)
+                {
+                    item.Visible = false;
+                }
             }
         }
     }

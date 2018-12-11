@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _4thHandin
 {
-    public partial class MoviesByCategory : System.Web.UI.Page
+    public partial class Browse : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
