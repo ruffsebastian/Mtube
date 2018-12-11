@@ -1,6 +1,7 @@
 *.ide
 *.ide-shm
 *.ide-wal
+*.suo
 .vs/4thHandin/v15/Server/sqlite3/storage.ide-wal
 .vs/4thHandin/v15/Server/sqlite3/storage.ide-shm
 .vs/4thHandin/v15/Server/sqlite3/storage.ide
@@ -10,7 +11,6 @@
 .vs/4thHandin/v15/Server/sqlite3/storage.ide-wal
 .vs/4thHandin/v15/Server/sqlite3/storage.ide-shm
 .vs/4thHandin/v15/Server/sqlite3/storage.ide
-.vs/4thHandin/v15/.suo
 4thHandin/DataAccessLayer.Designer.cs
 4thHandin/DataAccessLayer.xsd
 4thHandin/DataAccessLayer.xss
