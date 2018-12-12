@@ -27,7 +27,8 @@
                          <div class="gradient"></div>
                     
                     <asp:Image ID="PosterPath" Height="100%" runat="server" ImageUrl='<%# Eval ("PosterPath")%>' onerror="this.src='../Myfiles/default-img.jpg'" />
-
+                             <label class="card-bottom-year"><%# Eval("Year") %></label>
+                            <label class="card-bottom-genre"><%# Eval("Genre") %></label>
                              <!--<asp:Image ID="Image1" CssClass="default-pic" Height="100%" runat="server" ImageUrl="../Myfiles/default-img.jpg" />-->
                     <br />
                         <span class="text-middle">

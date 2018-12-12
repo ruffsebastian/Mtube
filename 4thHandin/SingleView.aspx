@@ -35,25 +35,26 @@
             </div>
         </div>
         <div class="col-md-3 col-sm-12  offset-md-1">
-            <div class=" commercial-box radius">Commercials Here
                 <asp:repeater id="rpMyRepeater" runat="server">
 <HeaderTemplate>
    <Table border="0">
 </HeaderTemplate>
    <ItemTemplate>
        <Item>
-   <tr style="background-color:FFECD8">
-      <td>
+        <a href='https://<%# DataBinder.Eval(Container.DataItem, "webpage") %>' target="_blank">
+           <div class=" commercial-box radius">
+    <div class="centerer">
+               <i class=" icon-bookmark" style="color:#FFF; font-size:30px; text-align:center;"></i>
+   <h1 style="color:#fff; position:center; text-align:center;">
          <%# DataBinder.Eval(Container.DataItem, "company") %>
        <!--  <%# DataBinder.Eval(Container.DataItem, "viewcount") %>-->
-      </td>
-   </tr>
-   <tr style="background-color:FFECD8">
-      <td>
-         <%# DataBinder.Eval(Container.DataItem, "logo") %>
-        <!-- <%# DataBinder.Eval(Container.DataItem, "webpage") %>-->
-      </td>
-   </tr>
+   </h1>
+   <div style="background-color:FFECD8">
+        <!-- <%# DataBinder.Eval(Container.DataItem, "logo") %> -->
+   </div>
+        </div>
+        </div>
+        </a> 
            </Item>
    </ItemTemplate>
    <FooterTemplate>
@@ -61,7 +62,6 @@
    </FooterTemplate>
 </asp:repeater>
             </div>
-        </div>
     </div>
 
 

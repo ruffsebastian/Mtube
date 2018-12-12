@@ -909,7 +909,7 @@ namespace _4thHandin.DataAccessLayerTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=DESKTOP-SCRFL8B;Initial Catalog=MovieDBList;Integrated Security=True";
+            this._connection.ConnectionString = "Data Source=THE-STAN;Initial Catalog=MovieDBList;Integrated Security=True";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -944,7 +944,7 @@ namespace _4thHandin.DataAccessLayerTableAdapters {
             this._commandCollection[4].CommandText = "dbo.MovieTitleQuery";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@a", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@title", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "dbo.SelectGenres";
@@ -1028,13 +1028,13 @@ namespace _4thHandin.DataAccessLayerTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual DataAccessLayer.MovieDBListDataTable GetDataByTitleNEW(string a) {
+        public virtual DataAccessLayer.MovieDBListDataTable GetDataByTitleNEW(string title) {
             this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((a == null)) {
+            if ((title == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(a));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(title));
             }
             DataAccessLayer.MovieDBListDataTable dataTable = new DataAccessLayer.MovieDBListDataTable();
             this.Adapter.Fill(dataTable);
