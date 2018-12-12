@@ -11,27 +11,33 @@ namespace _4thHandin
     public partial class SiteMaster : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            Labelcurrentconman.Text = ConMan.ConnStr;  //tell the dev what connection he is using
-            
+        {            
             //Display a Chuck Norris joke via API about a random teacher
-            WebClient client = new WebClient();
-
-            string[] Teachers = { "Torben", "Tue", "Morten", "Jesper" };
-            string reply = client.DownloadString("http://api.icndb.com/jokes/random?firstName=" + Teachers[new Random().Next(0, Teachers.Length)]);
-
-            string[] separatingChars = { "\"" };   
-            string[] mysplit = reply.Split(separatingChars, System.StringSplitOptions.RemoveEmptyEntries);
-
-            if (mysplit[0] != "False")
-            {
-                LabelJoke.Text = mysplit[11]; //i feel a bit dirty but hey, results are results right? [no they are not]
-            }
+           LabelJoke.Text = FourthProjectLogic.GetJokeFromAPI();
         }
 
+        protected string DevInfo()
+        {
+            return "CXI";
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            FourthProjectLogic.SearchMovies(TextBox2.Text);
+        }
         protected void ButtonSearch_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/search/?queryName=" + TextBoxSearch.Text);
+            FourthProjectLogic.SearchMovies(TextBoxSearch.Text);
         }
+/*        private void TextBoxSearch_KeyDown(object sender, KeyEventArgs e) //fuck this ill do it in jquery instead.
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button.PerformClick();
+            }
+        }*/
+
+
+
     }
 }

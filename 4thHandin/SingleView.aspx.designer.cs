@@ -13,6 +13,15 @@ namespace _4thHandin {
     public partial class SingleView {
         
         /// <summary>
+        /// ImagePoster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImagePoster;
+        
+        /// <summary>
         /// LabelMessages control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace _4thHandin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMessages;
+        
+        /// <summary>
+        /// MagicPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MagicPanel;
         
         /// <summary>
         /// LabelResultTitle control.
@@ -38,6 +56,15 @@ namespace _4thHandin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelResultRating;
+        
+        /// <summary>
+        /// LabelResultChildRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelResultChildRating;
         
         /// <summary>
         /// LabelResultYear control.
@@ -67,21 +94,21 @@ namespace _4thHandin {
         protected global::System.Web.UI.WebControls.Label LabelResultDescription;
         
         /// <summary>
-        /// LabelResultChildRating control.
+        /// rpMyRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelResultChildRating;
+        protected global::System.Web.UI.WebControls.Repeater rpMyRepeater;
         
         /// <summary>
-        /// ImagePoster control.
+        /// Repeater1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImagePoster;
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
     }
 }

@@ -12,15 +12,16 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataSource1.ConnectionString = ConMan.ConnStr;
+
+            SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
             
-            SqlConnection con1 = new SqlConnection(ConMan.ConnStr);
+            SqlConnection con1 = new SqlConnection(FourthProjectLogic.ConnStr);
             
             int countPoster = 0;
             con1.Open();
             foreach (GridViewRow row in GridViewMovies.Rows)
             {
-                SqlCommand myCommand1 = new SqlCommand("update MovieDBList set PosterPath ='" + GetPosterAPI.GetUrl(row.Cells[1].Text) + "' where Title = '" + row.Cells[1].Text + "'", con1);
+                SqlCommand myCommand1 = new SqlCommand("update MovieDBList set PosterPath ='" + FourthProjectLogic.OmdbAPI.GetPosterUrl(row.Cells[1].Text,Int32.Parse(row.Cells[3].Text)) + "' where Title = '" + row.Cells[1].Text + "'", con1);
                 myCommand1.ExecuteNonQuery();
 
                 //Thread.Sleep(5000);
@@ -28,7 +29,7 @@ namespace _4thHandin
                 LabelMessages.Visible = true;
                 LabelMessages.Text = "last (grid)row affected:" + countPoster.ToString();
 
-                ImagePoster.ImageUrl = GetPosterAPI.GetUrl(row.Cells[1].Text);
+                ImagePoster.ImageUrl = FourthProjectLogic.OmdbAPI.GetPosterUrl(row.Cells[1].Text, Int32.Parse(row.Cells[3].Text));
 
             }
             con1.Close();

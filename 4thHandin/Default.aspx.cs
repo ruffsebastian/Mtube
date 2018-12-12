@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -12,7 +13,13 @@ namespace _4thHandin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+            Repeater2.DataSource = FourthProjectLogic.Movie.MovieTableAdapter.MoviesTop10();
+            Repeater2.DataBind();
+        }
+
+        protected void ButtonSearch_Click(object sender, EventArgs e)
+        {
+           FourthProjectLogic.SearchMovies(TextBox1.Text);
         }
     }
 }

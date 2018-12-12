@@ -19,6 +19,9 @@
             <xsl:value-of select="c:logo"/>
             <xsl:value-of select="c:ourlogo"/>
           </logo>
+          <viewcount>
+                <xsl:value-of select="c:viewcount"/>
+          </viewcount>
         </commercial>
       </xsl:for-each>
     </commercials>

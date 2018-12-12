@@ -105,7 +105,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="commercials.aspx" />
     <Content Include="Content\42\Site.css" />
     <Content Include="Content\69b\Site.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -114,7 +113,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\_Site.css" />
     <Content Include="Default.aspx" />
-    <Content Include="DisplayTopMovies.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -128,14 +126,29 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Myfiles\default-img.jpg" />
     <Content Include="img\mask-title.png" />
-    <Content Include="MoviesByCategory.aspx" />
+    <Content Include="Browse.aspx" />
+    <Content Include="Myfiles\Latestresult.xml" />
     <Content Include="Search.aspx" />
     <Content Include="GetImages.aspx" />
     <Content Include="SingleView.aspx" />
+    <Content Include="TestCommercials.aspx" />
     <Content Include="xml\commercials.xml" />
+    <Content Include="xml\commercialsIncrementer.xslt" />
+    <Content Include="xml\commercialsImport.xslt" />
+    <Content Include="xml\commercialsCopy.xslt" />
+    <Content Include="DataAccessLayer.xsc">
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
+    </Content>
     <Content Include="xml\commercialsTransformed.xml" />
-    <Content Include="xml\commercialsXSLT - Copy.xslt" />
-    <Content Include="xml\commercialsXSLT.xslt" />
+    <Content Include="xml\commercialsTransformedTemp.xml" />
+    <None Include="DataAccessLayer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataAccessLayer.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataAccessLayer.xss">
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -174,14 +187,11 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="commercials.aspx.cs">
-      <DependentUpon>commercials.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="DataAccessLayer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
     </Compile>
-    <Compile Include="commercials.aspx.designer.cs">
-      <DependentUpon>commercials.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ConMan.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,25 +199,17 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DisplayTopMovies.aspx.cs">
-      <DependentUpon>DisplayTopMovies.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DisplayTopMovies.aspx.designer.cs">
-      <DependentUpon>DisplayTopMovies.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GetPosterAPI.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MoviesByCategory.aspx.cs">
-      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
+    <Compile Include="Browse.aspx.cs">
+      <DependentUpon>Browse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MoviesByCategory.aspx.designer.cs">
-      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
+    <Compile Include="Browse.aspx.designer.cs">
+      <DependentUpon>Browse.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OmdbAPI.cs" />
+    <Compile Include="FourthProjectLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
@@ -237,7 +239,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="TokenClass.cs" />
+    <Compile Include="TestCommercials.aspx.cs">
+      <DependentUpon>TestCommercials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestCommercials.aspx.designer.cs">
+      <DependentUpon>TestCommercials.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
