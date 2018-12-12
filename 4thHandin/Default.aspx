@@ -12,7 +12,9 @@
     <div class="row">
     <div class="col-lg-4 col-lg-offset-4">
         <div class="input-group">
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control sizing-addon1"></asp:TextBox>
+                                        <asp:Panel ID="pnlDefaqult" runat="server" DefaultButton="Button1">
+            <asp:TextBox ID="TextBox1" onkeypress="Button1_Click()" runat="server" CssClass="form-control sizing-addon1"></asp:TextBox>
+        </asp:Panel>
             <span class="input-group-btn">
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="ButtonSearch_Click" CssClass="btn btn-primary-c btn-outline-secondary top-search-button" />
          </span>

@@ -197,7 +197,7 @@ namespace _4thHandin
 
             public static List<Movie> ListMoviesByGenre(string Genre)
             {
-                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByGenre(Genre);   // this shit right here... 
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByGenre(Genre);  
                 return MovieListLoader(movieDBListRows);
             }
 
