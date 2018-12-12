@@ -16,7 +16,7 @@
                     <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="SingleView.aspx?queryID={0}" DataTextField="Title" DataTextFormatString="{0}" HeaderText="Link" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Title] = @Title)" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE (CHARINDEX(@title, Title) > 0)" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>">
                 <SelectParameters>
                     <asp:QueryStringParameter DefaultValue="Fight Club" Name="Title" QueryStringField="queryName" Type="String" />
                 </SelectParameters>

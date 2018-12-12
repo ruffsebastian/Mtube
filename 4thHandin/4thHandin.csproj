@@ -187,6 +187,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DataAccessLayer.cs">
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLayer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

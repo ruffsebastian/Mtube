@@ -45,13 +45,13 @@
    <tr style="background-color:FFECD8">
       <td>
          <%# DataBinder.Eval(Container.DataItem, "company") %>
-         <%# DataBinder.Eval(Container.DataItem, "viewcount") %>
+       <!--  <%# DataBinder.Eval(Container.DataItem, "viewcount") %>-->
       </td>
    </tr>
    <tr style="background-color:FFECD8">
       <td>
          <%# DataBinder.Eval(Container.DataItem, "logo") %>
-         <%# DataBinder.Eval(Container.DataItem, "webpage") %>
+        <!-- <%# DataBinder.Eval(Container.DataItem, "webpage") %>-->
       </td>
    </tr>
            </Item>
