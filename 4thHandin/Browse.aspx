@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Browse.aspx.cs" Inherits="_4thHandin.Browse" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT DISTINCT [Genre] FROM [MovieDBList]"></asp:SqlDataSource>
-   <asp:SqlDataSource ID="SqlDataSource5" runat="server" SelectCommand="SELECT * FROM [MovieDBList] WHERE ([Genre] = @Genre)" ConnectionString="<%$ ConnectionStrings:MovieDBListConnectionString %>"></asp:SqlDataSource>
 
     <div class="row">
         <div class="col-md-12">

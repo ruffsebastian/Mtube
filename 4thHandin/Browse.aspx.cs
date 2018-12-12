@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace _4thHandin
 {
@@ -12,12 +7,23 @@ namespace _4thHandin
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
-            SqlDataSource5.ConnectionString = FourthProjectLogic.ConnStr;
+
+            //if no genre querystring, default to action movies
+            if (string.IsNullOrWhiteSpace(Request.QueryString["genre"]))
+            {
+                Repeater1.DataSource = FourthProjectLogic.Movie.MovieTableAdapter.GetDataByGenre("Action");
+            }
+            else //use querystring
+            {
+                Repeater1.DataSource = FourthProjectLogic.Movie.MovieTableAdapter.GetDataByGenre(Request.QueryString["genre"]);
+            }
+            Repeater1.DataBind();
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //navigate to page with querystring after selection               
+            Response.Redirect("~/browse/?genre=" + DropDownList1.SelectedValue);
         }
     }
 }
