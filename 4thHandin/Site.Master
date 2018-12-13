@@ -51,7 +51,7 @@
                         <span class="icon-bar "></span>
                     </button>
                     <a class="navbar-brand mobile-hide" runat="server" href="~/">
-                        <img src="/img/mtube.png" alt="M-tube logo" height="50" style="margin-top: -15px;" tabindex="-1" /></a>
+                        <img src="/img/mtube-small.png" alt="M-tube logo" height="50" style="margin-top: -15px;" tabindex="-1" /></a>
                      <div class="mobile-show">
                         <div style="margin-top: 8px; margin-left: 15px; float: left;">
                                                       <asp:Panel ID="Panel1" runat="server" DefaultButton="Button1">
