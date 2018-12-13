@@ -27,16 +27,16 @@
 
                     <div class="col-md-5th-1 col-sm-4">
                     <div class="card card-1">
-                        <a href='/SingleView.aspx?queryID=<%# Eval ("ID")%>'>
+                        <a href='/SingleView.aspx?queryID=<%# Eval ("ID")%>' id="main" tabindex="1">
                             <div class="gradient"></div>
 
-                            <asp:Image ID="Image2" Height="100%" runat="server" ImageUrl='<%# Eval ("PosterPath")%>' onerror="this.src='../Myfiles/default-img.jpg'" AlternateText='<%# Eval("Title") %>' />
-                            <label class="card-bottom-year"><%# Eval("Year") %></label>
                             <label class="card-bottom-genre"><%# Eval("Genre") %></label>
+                            <asp:Image ID="Image2" Height="100%" runat="server" ImageUrl='<%# Eval ("PosterPath")%>' onerror="this.src='../Myfiles/default-img.jpg'" AlternateText="Movie" />
 
                             <span class="text-middle">
                                 <asp:Label ID="TitleLabel" CssClass="text-middle" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
                             </span>
+                            <label class="card-bottom-year"><%# Eval("Year") %></label>
                         </a>
                     </div>
                     </div>

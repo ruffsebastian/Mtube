@@ -17,7 +17,7 @@ namespace _4thHandin
         {
             //redirect to home if there is no querystring
             if (string.IsNullOrWhiteSpace(Request.QueryString["queryID"])) {
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/");
             }
                    
             //resultspanel.Visible = false;

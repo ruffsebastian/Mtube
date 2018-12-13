@@ -16,7 +16,7 @@ namespace _4thHandin
             //examples of getting movie info from database 
 
             //creating a movie object using the ID constructor - this finds the movie with this id in the database and loads it into the movie object it creates 
-           // FourthProjectLogic.Movie testmovie = new FourthProjectLogic.Movie(420);
+            FourthProjectLogic.Movie testmovie = new FourthProjectLogic.Movie(420);
             //doyouhave2012.Text = testmovie.ToString();  //we then use our movie objects custom tostring method to output some summary text about the movie (that i wrote way too late at night)
 
             //stuck me that we could also do this to get that info:
