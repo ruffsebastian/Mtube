@@ -12,7 +12,7 @@
            
 
             <div class="col-md-4 col-sm-12 image-poster-box">
-                <asp:Image ID="ImagePoster" CssClass="single-view-img-center" runat="server" Height="356px" AlternateText="Poster" ImageUrl="~/MyFiles/default-img.png" />
+                <asp:Image ID="ImagePoster" CssClass="single-view-img-center" runat="server" Height="356px" AlternateText="Movie Poster" ImageUrl="~/MyFiles/default-img.png" />
             </div>
 
             <div class="col-md-8 col-sm-12" style="padding-top:10px;padding-bottom:40px;">
@@ -49,7 +49,7 @@
          <%# DataBinder.Eval(Container.DataItem, "company") %>
        <!--  <%# DataBinder.Eval(Container.DataItem, "viewcount") %>-->
    </h1>
-   <div style="background-color:FFECD8">
+   <div>
         <!-- <%# DataBinder.Eval(Container.DataItem, "logo") %> -->
    </div>
         </div>

@@ -124,7 +124,7 @@ namespace _4thHandin
             }
         }
 
-        public class Movie
+       public class Movie
         {
             public static DataAccessLayerTableAdapters.MovieDBListTableAdapter MovieTableAdapter = new DataAccessLayerTableAdapters.MovieDBListTableAdapter();
 
@@ -143,7 +143,7 @@ namespace _4thHandin
                 this.viewcount = viewcount;
                 this.posterpath = posterpath;
             }
-            
+          
             public Movie(int ID) //constructor via DataSet - essentially the same as searching for movie by id but more sexier
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
@@ -155,22 +155,22 @@ namespace _4thHandin
                 this.viewcount = Int32.Parse(movieDBListRows[0]["viewcount"].ToString());
                 this.posterpath = movieDBListRows[0]["posterpath"].ToString();
             }
-
-       /*     public override string ToString()
-            {
-                string outputtet = "That Movie " + this.title + ", i think it was made in " + this.year + " or so... was one of those " + this.genre;
-                outputtet += " flicks... folks round here have taken a shine to it " + this.viewcount + " times. you can find its poster at ye olde uniform resource locator " + this.posterpath;
-                return outputtet;
-            }*/
+            
+           // public override string ToString()
+            //{
+             //   string outputtet = "That Movie " + this.title + ", i think it was made in " + this.year + " or so... was one of those " + this.genre;
+              //  outputtet += " flicks... folks round here have taken a shine to it " + this.viewcount + " times. you can find its poster at ye olde uniform resource locator " + this.posterpath;
+                //return outputtet;
+            //}
 
             public void IncrementViewcount()
             {
                 MovieTableAdapter.Update( this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
             }
-
+            
             //early test of MovieDBListDataTable capabilities, only gets the title instead of creating an object.
             //usage example:  textbox.text = FourthProjectLogic.GetTitleByIdDal(queryID);
-            public static String GetTitleByIdDal(int ID)
+          /*  public static String GetTitleByIdDal(int ID)
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
 
@@ -211,7 +211,7 @@ namespace _4thHandin
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.MoviesTop10();
                 return MovieListLoader(movieDBListRows);
-            }
+            }*/
         }
     }
 }
