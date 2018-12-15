@@ -31,15 +31,6 @@ namespace _4thHandin {
         protected global::System.Web.UI.WebControls.Label LabelMessages;
         
         /// <summary>
-        /// MagicPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel MagicPanel;
-        
-        /// <summary>
         /// LabelResultTitle control.
         /// </summary>
         /// <remarks>
@@ -110,5 +101,14 @@ namespace _4thHandin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        
+        /// <summary>
+        /// SqlDataSource2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
     }
 }

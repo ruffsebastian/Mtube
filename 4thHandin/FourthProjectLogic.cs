@@ -61,11 +61,11 @@ namespace _4thHandin
             }
         }
 
+        // make sure we have the transformed xml, if not then create it
         public class Commercials
         {
             // https://www.freeformatter.com/xsl-transformer.html Nice xslt testing       
 
-            // make sure we have the transformed xml, if not then create it
             public static void CheckTransform()
             {
                 // do the xslt transformation on the commercials.xml only if we havent done so, or if we deleted it to force a refresh
@@ -85,7 +85,6 @@ namespace _4thHandin
                 }
             }
 
-            //needed for saving since we cant directly do that
             public static void MakeTempXml()
             {
                 string sourcefile = HttpContext.Current.Server.MapPath("/xml/commercialsTransformed.xml");
@@ -100,7 +99,6 @@ namespace _4thHandin
                 fs.Close();
             }
 
-            //viewcounts for commercials
             public static int StatTracker()
             {
                 CheckTransform();
@@ -158,16 +156,25 @@ namespace _4thHandin
                 this.posterpath = movieDBListRows[0]["posterpath"].ToString();
             }
 
-            public override string ToString()
+       /*     public override string ToString()
             {
                 string outputtet = "That Movie " + this.title + ", i think it was made in " + this.year + " or so... was one of those " + this.genre;
                 outputtet += " flicks... folks round here have taken a shine to it " + this.viewcount + " times. you can find its poster at ye olde uniform resource locator " + this.posterpath;
                 return outputtet;
-            }
+            }*/
 
             public void IncrementViewcount()
             {
                 MovieTableAdapter.Update( this.title, this.genre, this.year, this.viewcount + 1, this.posterpath, this.id, this.id);
+            }
+
+            //early test of MovieDBListDataTable capabilities, only gets the title instead of creating an object.
+            //usage example:  textbox.text = FourthProjectLogic.GetTitleByIdDal(queryID);
+            public static String GetTitleByIdDal(int ID)
+            {
+                DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
+
+                return movieDBListRows[0][1].ToString();
             }
 
             private static List<Movie> MovieListLoader(DataAccessLayer.MovieDBListDataTable movieDBListRows)

@@ -126,7 +126,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Myfiles\default-img.jpg" />
     <Content Include="img\mask-title.png" />
-    <Content Include="Browse.aspx" />
+    <Content Include="MoviesByCategory.aspx" />
     <Content Include="Myfiles\Latestresult.xml" />
     <Content Include="Search.aspx" />
     <Content Include="GetImages.aspx" />
@@ -187,6 +187,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DataAccessLayer.cs">
+      <DependentUpon>DataAccessLayer.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLayer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -202,12 +205,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Browse.aspx.cs">
-      <DependentUpon>Browse.aspx</DependentUpon>
+    <Compile Include="MoviesByCategory.aspx.cs">
+      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Browse.aspx.designer.cs">
-      <DependentUpon>Browse.aspx</DependentUpon>
+    <Compile Include="MoviesByCategory.aspx.designer.cs">
+      <DependentUpon>MoviesByCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="FourthProjectLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

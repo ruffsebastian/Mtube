@@ -1,33 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Drawing;
+using System.Net;
+using System.IO;
+using System.Xml;
+using System.Collections.Specialized;
+using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading;
 
 namespace _4thHandin
 {
     public partial class Search : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {          
-            //redirect to home if there is no querystring instead of crashing
-            if (string.IsNullOrWhiteSpace(Request.QueryString["queryName"]))
+        {
+            SqlDataSource1.ConnectionString = FourthProjectLogic.ConnStr;
+            this.GridViewDisplaySearch.Visible = false;
+            if (GridViewDisplaySearch.Rows.Count == 1)
             {
-                Response.Redirect("~/");
+                Response.Redirect("~/SingleView/?queryID=" + GridViewDisplaySearch.Rows[0].Cells[0].Text);
             }
-            else
+            if (GridViewDisplaySearch.Rows.Count == 0)
             {
-                //example of the DataAccessLayer being useful: here we work with the data directly from the source instead of depending on the webcontrol(repeater in this case) 
-                // and possibly having logic fail if we decided to change to a gridview ect. we just ask the table we also use for datasource for shit directly.
-                DataAccessLayer.MovieDBListDataTable results = FourthProjectLogic.Movie.MovieTableAdapter.GetMovieBySearchTitle(Request.QueryString["queryName"]);
-                Repeater2.DataSource = results;
-                Repeater2.DataBind();
-
-                if (results.Count == 1)
-                {
-                    //redirect to single view if we only get one result
-                    Response.Redirect("~/SingleView/?queryID=" + results.Rows[0][0]);
-                }
-                else if (results.Count == 0)
-                {
-                    label_noresultsmessage.Visible = true;
-                }
+                //show no results message 
             }
         }
     }

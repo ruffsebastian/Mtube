@@ -519,7 +519,7 @@ textarea {
 
 @media (min-width: 992px) {
     .col-md-5th-1, .col-md-5th-2, .col-md-5th-3, .col-md-5th-4 {
-        float: left;
+        float:left;
     }
 
     .col-md-5th-5 {
@@ -779,3 +779,38 @@ h1 {
 .card-single-view {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
+.centerer {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align:center;
+}
+
+a.skip-main {
+    left: -999px;
+    position: absolute;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: -999; 
+}
+
+    a.skip-main:focus, a.skip-main:active {
+        color: #fff;
+        background-color: #000;
+        left: auto;
+        top: auto;
+        width: 30%;
+        height: auto;
+        overflow: auto;
+        margin: 10px 35%;
+        padding: 5px;
+        border-radius: 15px;
+        border: 4px solid yellow;
+        text-align: center;
+        font-size: 1.2em;
+        z-index: 999;
+    }
+      

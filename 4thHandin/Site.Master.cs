@@ -14,6 +14,12 @@ namespace _4thHandin
         {            
             //Display a Chuck Norris joke via API about a random teacher
            LabelJoke.Text = FourthProjectLogic.GetJokeFromAPI();
+
+
+           
+
+
+            
         }
 
         protected string DevInfo()
@@ -25,17 +31,11 @@ namespace _4thHandin
         {
             FourthProjectLogic.SearchMovies(TextBox2.Text);
         }
-        protected void ButtonSearch_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            FourthProjectLogic.SearchMovies(TextBoxSearch.Text);
+            FourthProjectLogic.SearchMovies(TextBox1.Text);
         }
-/*        private void TextBoxSearch_KeyDown(object sender, KeyEventArgs e) //fuck this ill do it in jquery instead.
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                button.PerformClick();
-            }
-        }*/
+
 
 
 
