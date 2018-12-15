@@ -103,7 +103,7 @@ namespace _4thHandin
             {
                 CheckTransform();
 
-                int randomcommercialToDisplayPosition = new Random().Next(0, 4); //should be a count, otherwise new ones won't be seen
+                int randomcommercialToDisplayPosition = new Random().Next(0, 4); //should be a count, otherwise new ones won't be seen, now only there four will be used
 
                 XsltArgumentList argsList = new XsltArgumentList();
                 argsList.AddParam("randomcommercialToDisplayPosition", "", randomcommercialToDisplayPosition);
@@ -144,7 +144,7 @@ namespace _4thHandin
                 this.posterpath = posterpath;
             }
             
-            public Movie(int ID) //constructor via DataSet - essentially the same as searching for movie by id but more sexier
+            public Movie(int ID) //constructor via DataSet - essentially the same as searching for movie by id but better aspect
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
 
@@ -170,7 +170,7 @@ namespace _4thHandin
 
             //early test of MovieDBListDataTable capabilities, only gets the title instead of creating an object.
             //usage example:  textbox.text = FourthProjectLogic.GetTitleByIdDal(queryID);
-            public static String GetTitleByIdDal(int ID)
+           /* public static String GetTitleByIdDal(int ID)
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.GetDataByID(ID);
 
@@ -211,7 +211,7 @@ namespace _4thHandin
             {
                 DataAccessLayer.MovieDBListDataTable movieDBListRows = MovieTableAdapter.MoviesTop10();
                 return MovieListLoader(movieDBListRows);
-            }
+            }*/
         }
     }
 }
