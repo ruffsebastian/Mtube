@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=DESKTOP-SCRFL8B;Initial Catalog=MovieDBList;Integrated Security=True" IsAppSettingsProperty="false" Modifier="Assembly" Name="MovieDBListConnectionString (4thHandin)" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection ConnectionStringObject="Data Source=THE-STAN;Initial Catalog=MovieDBList;Integrated Security=True" IsAppSettingsProperty="false" Modifier="Assembly" Name="MovieDBListConnectionString (4thHandin)" ParameterPrefix="@" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MovieDBListTableAdapter" GeneratorDataComponentClassName="MovieDBListTableAdapter" Name="MovieDBList" UserDataComponentName="MovieDBListTableAdapter">

@@ -94,7 +94,7 @@
  <a href="javascript:" id="return-to-top" tabindex="-4"><i class="icon-chevron-up"></i></a>
                 <div style="text-align:center;">
                     <p><asp:Label ID="LabelJoke" runat="server" Text="Label"></asp:Label></p>     
-                <p> Made by group 42 & 69 - collectively represented by their combined value of 111 expressed in roman numerals - CXI </p>
+                <p>© Group:69b 2018 All rights Reserved</p>
                     </div>
             </footer>
         </div>
